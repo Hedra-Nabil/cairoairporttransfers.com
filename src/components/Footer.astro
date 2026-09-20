@@ -1,0 +1,118 @@
+---
+---
+
+<footer class="bg-[#0e0c29] text-slate-300 border-t border-indigo-950 pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    
+    <!-- Newsletter & Brand Highlight Banner -->
+    <div class="bg-[#181442] border border-indigo-900/60 rounded-3xl p-6 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-2 text-center lg:text-left">
+        <h3 class="text-xl sm:text-2xl font-black text-white">
+          Subscribe to our travel newsletter
+        </h3>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-lg">
+          Get exclusive transfer discount codes, Cairo travel guides, and airport arrival updates directly in your inbox.
+        </p>
+      </div>
+
+      <form class="flex flex-col sm:flex-row w-full lg:w-auto max-w-md gap-2" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+        <input 
+          type="email" 
+          placeholder="Enter your email address" 
+          required
+          class="px-4 py-3 bg-[#0e0c29] border border-indigo-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 flex-1"
+        />
+        <button 
+          type="submit" 
+          class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-sm rounded-xl transition shadow-md whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <!-- Multi-Column Links -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-xs sm:text-sm">
+      
+      <!-- Brand & About -->
+      <div class="col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-amber-500 flex items-center justify-center text-slate-950 font-black shadow-md">
+            <svg class="w-5 h-5 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-xl text-white tracking-tight">
+            CAIRO<span class="text-amber-400">TRANSFERS</span>
+          </span>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+          Cairo's trusted private airport transfer provider. Operating 24/7 across Terminal 1, 2, and 3, connecting travelers to Cairo, Giza, Alexandria, and all Egyptian destinations with fixed, transparent pricing.
+        </p>
+        <div class="pt-2 text-xs text-slate-500">
+          Cairo International Airport (CAI), Heliopolis, Cairo, Egypt
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">
+          Company
+        </h4>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#" class="hover:text-amber-400 transition">About Us</a></li>
+          <li><a href="#how-it-works" class="hover:text-amber-400 transition">How It Works</a></li>
+          <li><a href="#fleet" class="hover:text-amber-400 transition">Our Vehicle Fleet</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Driver Safety</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Corporate Transfers</a></li>
+        </ul>
+      </div>
+
+      <!-- Destinations -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">
+          Top Destinations
+        </h4>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#popular-transfers" class="hover:text-amber-400 transition">Downtown Cairo</a></li>
+          <li><a href="#popular-transfers" class="hover:text-amber-400 transition">Giza Pyramids</a></li>
+          <li><a href="#popular-transfers" class="hover:text-amber-400 transition">New Cairo & 5th Stl</a></li>
+          <li><a href="#popular-transfers" class="hover:text-amber-400 transition">Alexandria Coast</a></li>
+          <li><a href="#destinations" class="hover:text-amber-400 transition">Sphinx Airport (SPX)</a></li>
+        </ul>
+      </div>
+
+      <!-- Support & Help -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">
+          24/7 Support
+        </h4>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#faqs" class="hover:text-amber-400 transition">Help & FAQs</a></li>
+          <li><a href="#search-booking" class="hover:text-amber-400 transition">Manage Booking</a></li>
+          <li><a href="tel:+201090008888" class="text-amber-400 font-bold hover:underline">+20 10 9000-8888</a></li>
+          <li><a href="https://wa.me/201090008888" target="_blank" class="hover:text-emerald-400 transition">WhatsApp Support</a></li>
+          <li><a href="mailto:support@cairoairporttransfers.com" class="hover:text-amber-400 transition">Email Dispatch</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Strip: Payment Badges & Legal -->
+    <div class="border-t border-indigo-950 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>
+        © 2026 Cairo Airport Transfers. All rights reserved. Designed for Netlify.
+      </div>
+
+      <!-- Payment Gateways Badges -->
+      <div class="flex items-center gap-3">
+        <span class="px-2.5 py-1 bg-[#1a1645] text-slate-300 rounded font-mono text-[10px] border border-indigo-900">VISA</span>
+        <span class="px-2.5 py-1 bg-[#1a1645] text-slate-300 rounded font-mono text-[10px] border border-indigo-900">MASTERCARD</span>
+        <span class="px-2.5 py-1 bg-[#1a1645] text-slate-300 rounded font-mono text-[10px] border border-indigo-900">AMEX</span>
+        <span class="px-2.5 py-1 bg-[#1a1645] text-slate-300 rounded font-mono text-[10px] border border-indigo-900">APPLE PAY</span>
+        <span class="px-2.5 py-1 bg-[#1a1645] text-slate-300 rounded font-mono text-[10px] border border-indigo-900">PAYPAL</span>
+      </div>
+    </div>
+
+  </div>
+</footer>

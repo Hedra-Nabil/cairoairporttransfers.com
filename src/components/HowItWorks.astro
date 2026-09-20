@@ -1,0 +1,68 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Select your transfer",
+    desc: "Choose pickup terminal, destination hotel or area, date, and select the ideal vehicle type for your group and luggage."
+  },
+  {
+    step: "02",
+    title: "Enter flight & hotel details",
+    desc: "Provide your flight number for live delay tracking and your hotel address. Complete secure, instant cashless checkout."
+  },
+  {
+    step: "03",
+    title: "Meet your driver at arrivals",
+    desc: "Receive your digital confirmation voucher. Your driver greets you inside the terminal with a name board and escorts you to the car."
+  }
+];
+---
+
+<section id="how-it-works" class="py-16 md:py-24 bg-slate-50 border-b border-slate-200/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="text-xs font-black tracking-widest text-indigo-600 uppercase mb-2">
+        SEAMLESS PROCESS
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        Book your Cairo airport transfers in three steps
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base mt-2">
+        From booking to hotel check-in, we make your journey through Cairo fast, transparent, and hassle-free.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((item, index) => (
+        <div class="bg-white p-8 rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between relative group">
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-4xl font-black text-indigo-200 group-hover:text-indigo-600 transition-colors">
+                {item.step}
+              </span>
+              <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs">
+                ✓
+              </div>
+            </div>
+
+            <h3 class="text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition">
+              {item.title}
+            </h3>
+
+            <p class="text-slate-600 text-sm leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-amber-600">
+            <span>Quick & Guaranteed</span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

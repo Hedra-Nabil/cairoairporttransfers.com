@@ -1,0 +1,101 @@
+---
+const infoPanels = [
+  {
+    id: "return-instructions",
+    title: "Return and drop-off instructions",
+    badge: "DEPARTURES",
+    summary: "Essential advice on scheduling hotel pickups for outbound flights from Cairo Airport.",
+    details: `
+      <p class="mb-3">When booking a return transfer from your hotel or private address back to Cairo International Airport (CAI), we strongly recommend scheduling your vehicle pickup:</p>
+      <ul class="list-disc list-inside space-y-1.5 mb-3 text-slate-600 pl-2">
+        <li><strong>International Flights:</strong> At least 3.5 to 4 hours prior to departure time.</li>
+        <li><strong>Domestic Flights (e.g. to Luxor, Aswan, Sharm, Hurghada):</strong> At least 2.5 hours prior.</li>
+      </ul>
+      <p>Cairo's major arteries (such as the 6th of October Bridge and the Ring Road) frequently experience rush-hour congestion. Our drivers monitor traffic conditions and will drop you off right at your designated departure terminal hall entrance curbside.</p>
+    `
+  },
+  {
+    id: "luggage-guidance",
+    title: "Luggage guidance & vehicle sizing",
+    badge: "BAGGAGE",
+    summary: "Clear baggage allowances per vehicle category so you choose the right car size.",
+    details: `
+      <p class="mb-3">To ensure a comfortable ride with secure luggage placement, please refer to our standard luggage capacity per vehicle category:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-3">
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">Standard Sedan</span>
+          <span class="text-xs text-slate-500">Max 3 standard suitcases (23kg) + 2 hand luggage</span>
+        </div>
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">Private Minivan</span>
+          <span class="text-xs text-slate-500">Max 6-7 large suitcases + 6 hand luggage</span>
+        </div>
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">Executive VIP Sedan</span>
+          <span class="text-xs text-slate-500">Max 3 medium suitcases + executive carry-ons</span>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500">Traveling with folding wheelchairs, child strollers, musical instruments, or diving gear? Simply specify this during booking or message us on WhatsApp so we dispatch an appropriately sized vehicle.</p>
+    `
+  },
+  {
+    id: "meeting-points",
+    title: "Terminal 1, 2 & 3 meeting points",
+    badge: "ARRIVALS",
+    summary: "Exact terminal locations where your chauffeur will be waiting with your name board.",
+    details: `
+      <p class="mb-3">Cairo Airport has three passenger terminals. Here is where you will meet your driver after exiting customs:</p>
+      <ul class="space-y-2 mb-2 text-slate-600">
+        <li class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-xs">
+          <strong class="text-slate-900">Terminal 3 (EgyptAir & Star Alliance):</strong> Chauffeur waits immediately after exiting the customs doors inside the arrival reception hall, holding a board with your name.
+        </li>
+        <li class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-xs">
+          <strong class="text-slate-900">Terminal 2 (British Airways, Emirates, Air France, Saudia, etc.):</strong> Chauffeur waits right past the arrival barrier gates near the information and banking booths.
+        </li>
+        <li class="p-2.5 bg-slate-50 rounded-lg border border-slate-200 text-xs">
+          <strong class="text-slate-900">Terminal 1 (Charter and Low-Cost Carriers):</strong> Chauffeur waits outside the main glass sliding doors at the dedicated driver meeting lane.
+        </li>
+      </ul>
+      <p class="text-xs text-slate-500">Free 60-minute wait time is counted starting from your flight's actual landing time.</p>
+    `
+  }
+];
+---
+
+<section class="py-16 md:py-24 bg-white border-b border-slate-200/60">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+    
+    <div class="text-center mb-10">
+      <div class="text-xs font-black tracking-widest text-indigo-600 uppercase mb-2">
+        PASSENGER ESSENTIALS
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        Helpful transfer information & guidelines
+      </h2>
+    </div>
+
+    {infoPanels.map((panel) => (
+      <details class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm transition-all duration-200 open:shadow-md open:border-indigo-300">
+        <summary class="p-6 cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 hover:text-indigo-600 transition select-none">
+          <div class="flex items-center gap-3">
+            <span class="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-indigo-50 text-indigo-700 rounded-md">
+              {panel.badge}
+            </span>
+            <div>
+              <span class="text-base sm:text-lg block font-extrabold">{panel.title}</span>
+              <span class="text-xs font-normal text-slate-500 hidden sm:block mt-0.5">{panel.summary}</span>
+            </div>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-slate-100 group-open:bg-indigo-50 text-slate-600 group-open:text-indigo-600 flex items-center justify-center transition-transform group-open:rotate-180">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </summary>
+        <div class="px-6 pb-6 pt-2 border-t border-slate-100 text-sm text-slate-600 leading-relaxed" set:html={panel.details}>
+        </div>
+      </details>
+    ))}
+
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import PopularTransfers from '../components/PopularTransfers.astro';
+import FleetCategories from '../components/FleetCategories.astro';
+import CustomiseJourney from '../components/CustomiseJourney.astro';
+import AirportOverview from '../components/AirportOverview.astro';
+import GuaranteeBadges from '../components/GuaranteeBadges.astro';
+import PickupAndBookingGuides from '../components/PickupAndBookingGuides.astro';
+import DestinationsGrid from '../components/DestinationsGrid.astro';
+import ServiceFeatures from '../components/ServiceFeatures.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import InformationAccordions from '../components/InformationAccordions.astro';
+import FAQSection from '../components/FAQSection.astro';
+import PreFooterCTA from '../components/PreFooterCTA.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+---
+
+<Layout 
+  title="Cairo International Airport Transfers | Official Airport Taxi & Shuttles"
+  description="Book reliable, low-cost private airport transfers from Cairo International Airport (CAI) to Downtown, Giza Pyramids, New Cairo, and Alexandria. Door-to-door service, free flight monitoring, 24/7 customer support and free cancellation."
+>
+  <!-- Main Header & Navigation -->
+  <Header />
+
+  <main>
+    <!-- Hero Banner with Integrated Search Booking Engine -->
+    <Hero />
+
+    <!-- Popular Transfers Grid -->
+    <PopularTransfers />
+
+    <!-- Fleet Categories (Start your journey from Cairo) -->
+    <FleetCategories />
+
+    <!-- Private Transfers & Customise Journey Split Form -->
+    <CustomiseJourney />
+
+    <!-- Cairo Airport Overview Guide -->
+    <AirportOverview />
+
+    <!-- 4 Guarantee Pillars (Meet & Greet, Flight Tracking, Fixed Prices, Free Cancel) -->
+    <GuaranteeBadges />
+
+    <!-- Pickup & Online Booking Guidance Cards -->
+    <PickupAndBookingGuides />
+
+    <!-- Places to Travel / Destinations Grid -->
+    <DestinationsGrid />
+
+    <!-- Service Features & Everything You Need to Know Checklist -->
+    <ServiceFeatures />
+
+    <!-- 3 Simple Steps How It Works -->
+    <HowItWorks />
+
+    <!-- Return, Luggage & Terminal Meeting Points Accordions -->
+    <InformationAccordions />
+
+    <!-- Frequently Asked Questions -->
+    <FAQSection />
+
+    <!-- Pre-Footer Call to Action Banner -->
+    <PreFooterCTA />
+  </main>
+
+  <!-- Complete Multi-Column Footer with Newsletter -->
+  <Footer />
+
+  <!-- Floating WhatsApp Dispatch Button -->
+  <WhatsAppFloat />
+</Layout>

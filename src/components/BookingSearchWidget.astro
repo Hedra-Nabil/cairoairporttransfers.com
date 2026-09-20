@@ -1,0 +1,265 @@
+---
+// Modular Booking Search Engine Component
+// Prepared for external integration or third-party booking widget
+interface Props {
+  customActionUrl?: string;
+  isStandalone?: boolean;
+}
+
+const { customActionUrl = "#search", isStandalone = false } = Astro.props;
+---
+
+<div id="search-booking" class="w-full max-w-6xl mx-auto bg-white rounded-2xl shadow-hero-search border border-slate-200/80 p-5 md:p-7 relative z-20 backdrop-blur-md">
+  
+  <!-- Trip Type Selector Tabs -->
+  <div class="flex items-center gap-6 mb-5 pb-4 border-b border-slate-100">
+    <label class="flex items-center gap-2 cursor-pointer group">
+      <input 
+        type="radio" 
+        name="journey_type" 
+        value="one-way" 
+        checked 
+        class="w-4 h-4 text-amber-500 focus:ring-amber-400 focus:ring-2 accent-amber-500 cursor-pointer"
+        id="radio-one-way"
+      />
+      <span class="text-sm font-bold text-slate-800 group-hover:text-amber-600 transition">One-way</span>
+    </label>
+
+    <label class="flex items-center gap-2 cursor-pointer group">
+      <input 
+        type="radio" 
+        name="journey_type" 
+        value="return" 
+        class="w-4 h-4 text-amber-500 focus:ring-amber-400 focus:ring-2 accent-amber-500 cursor-pointer"
+        id="radio-return"
+      />
+      <span class="text-sm font-bold text-slate-800 group-hover:text-amber-600 transition">Return (Round Trip)</span>
+    </label>
+
+    <div class="ml-auto hidden sm:flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+      <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>
+      Best Price Guaranteed & Free Cancellation
+    </div>
+  </div>
+
+  <!-- Search Form -->
+  <!-- Note: When ready to connect your external booking engine, you can replace this form's action or inject your external script/iframe -->
+  <form id="booking-search-form" action={customActionUrl} method="GET" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+      
+      <!-- Pickup Location -->
+      <div class="md:col-span-3 space-y-1.5">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">
+          Pick-up Location
+        </label>
+        <div class="relative flex items-center">
+          <div class="absolute left-3.5 text-amber-500 pointer-events-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </div>
+          <select 
+            name="pickup" 
+            required
+            class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 hover:border-slate-300 focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition cursor-pointer appearance-none"
+          >
+            <option value="cai-all" selected>Cairo Intl Airport (CAI) - All Terminals</option>
+            <option value="cai-t1">Cairo Airport - Terminal 1</option>
+            <option value="cai-t2">Cairo Airport - Terminal 2</option>
+            <option value="cai-t3">Cairo Airport - Terminal 3</option>
+            <option value="spx">Sphinx Intl Airport (SPX) - Giza</option>
+            <option value="cairo-downtown">Downtown Cairo / Tahrir Square</option>
+            <option value="giza-hotels">Giza Pyramids Hotels</option>
+            <option value="new-cairo">New Cairo / 5th Settlement</option>
+          </select>
+          <div class="absolute right-3.5 pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drop-off Location -->
+      <div class="md:col-span-3 space-y-1.5">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">
+          Drop-off Location / Hotel
+        </label>
+        <div class="relative flex items-center">
+          <div class="absolute left-3.5 text-rose-500 pointer-events-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            name="dropoff" 
+            placeholder="e.g. Marriott Mena House, Downtown, Hotel"
+            required
+            class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 placeholder-slate-400 hover:border-slate-300 focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition"
+          />
+        </div>
+      </div>
+
+      <!-- Date & Time Group -->
+      <div class="md:col-span-3 space-y-1.5">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">
+          Date & Time
+        </label>
+        <div class="grid grid-cols-2 gap-2">
+          <!-- Date -->
+          <div class="relative flex items-center">
+            <input 
+              type="date" 
+              name="pickup_date" 
+              required
+              class="w-full px-2.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 hover:border-slate-300 focus:bg-white focus:border-amber-500 outline-none transition cursor-pointer"
+            />
+          </div>
+          <!-- Time -->
+          <div class="relative flex items-center">
+            <input 
+              type="time" 
+              name="pickup_time" 
+              value="12:00"
+              required
+              class="w-full px-2.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 hover:border-slate-300 focus:bg-white focus:border-amber-500 outline-none transition cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Passengers & Search CTA -->
+      <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-12 gap-2">
+        <!-- Passengers selector -->
+        <div class="sm:col-span-5 space-y-1.5">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">
+            Pax
+          </label>
+          <div class="relative flex items-center">
+            <select 
+              name="passengers" 
+              class="w-full pl-3 pr-6 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 hover:border-slate-300 focus:bg-white focus:border-amber-500 outline-none transition cursor-pointer appearance-none"
+            >
+              <option value="1">1 Pax</option>
+              <option value="2" selected>2 Pax</option>
+              <option value="3">3 Pax</option>
+              <option value="4">4 Pax</option>
+              <option value="5">5 Pax</option>
+              <option value="6">6 Pax</option>
+              <option value="7">7+ Pax</option>
+              <option value="minibus">Minibus</option>
+            </select>
+            <div class="absolute right-2 pointer-events-none text-slate-400">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="sm:col-span-7 space-y-1.5 flex flex-col justify-end">
+          <button 
+            type="submit" 
+            class="w-full py-3 px-4 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 font-black text-sm rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
+          >
+            <span>Search</span>
+            <svg class="w-4 h-4 text-slate-950 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Return Details Container (Hidden by default, shown when Return tab is active) -->
+    <div id="return-details" class="hidden pt-3 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-amber-50/50 p-3 rounded-xl">
+      <div class="space-y-1">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">
+          Return Date
+        </label>
+        <input 
+          type="date" 
+          name="return_date" 
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-800"
+        />
+      </div>
+      <div class="space-y-1">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700">
+          Return Pickup Time
+        </label>
+        <input 
+          type="time" 
+          name="return_time" 
+          value="14:00" 
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-800"
+        />
+      </div>
+      <div class="space-y-1 md:col-span-2 flex items-center pt-4">
+        <p class="text-xs text-slate-500 italic">
+          💡 Return transfers include hotel pickup and direct drop-off right at your departure terminal hall.
+        </p>
+      </div>
+    </div>
+  </form>
+
+  <!-- External integration placeholder hook -->
+  <div id="external-booking-form-slot" class="hidden">
+    <!-- Third-party widget / iframe can be attached here in the future -->
+  </div>
+</div>
+
+<script>
+  // Dynamic return trip toggle
+  const radioOneWay = document.getElementById('radio-one-way') as HTMLInputElement;
+  const radioReturn = document.getElementById('radio-return') as HTMLInputElement;
+  const returnDetails = document.getElementById('return-details');
+
+  if (radioOneWay && radioReturn && returnDetails) {
+    radioOneWay.addEventListener('change', () => {
+      if (radioOneWay.checked) {
+        returnDetails.classList.add('hidden');
+      }
+    });
+    radioReturn.addEventListener('change', () => {
+      if (radioReturn.checked) {
+        returnDetails.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Pre-fill today's date + 1 day
+  const dateInput = document.querySelector('input[name="pickup_date"]') as HTMLInputElement;
+  const returnDateInput = document.querySelector('input[name="return_date"]') as HTMLInputElement;
+  if (dateInput) {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+    dateInput.min = today.toISOString().split('T')[0];
+
+    if (returnDateInput) {
+      const nextWeek = new Date(tomorrow);
+      nextWeek.setDate(nextWeek.getDate() + 5);
+      returnDateInput.value = nextWeek.toISOString().split('T')[0];
+      returnDateInput.min = tomorrow.toISOString().split('T')[0];
+    }
+  }
+
+  // Smooth scroll or feedback on submit
+  const searchForm = document.getElementById('booking-search-form');
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      // If external widget is not hooked yet, provide smooth feedback or scroll to quotes
+      const target = document.getElementById('quick-quote') || document.getElementById('popular-transfers');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+</script>
