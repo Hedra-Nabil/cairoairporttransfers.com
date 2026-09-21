@@ -2,12 +2,60 @@
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  type?: string;
+  schema?: Record<string, any> | Record<string, any>[];
 }
 
 const {
-  title = "Cairo International Airport Transfers | Official Airport Taxi & Shuttles",
-  description = "Book reliable, low-cost private airport transfers from Cairo International Airport (CAI). Door-to-door service, free flight monitoring, 24/7 customer support and free cancellation."
+  title = "Cairo Airport Transfers | Private Taxi & Chauffeur to Hotels",
+  description = "Book reliable, fixed-price Cairo airport transfers (CAI). Terminal 1, 2 & 3 Meet & Greet, free flight delay tracking, AC fleet & 24/7 support. No taxi haggling.",
+  canonicalUrl,
+  ogImage = "/images/hero-banner.jpg",
+  type = "website",
+  schema
 } = Astro.props;
+
+// Canonical URL generation
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://cairoairporttransfers.com';
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+// Default Sitewide TaxiService / Organization Schema
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "@id": `${siteUrl}/#service`,
+  "name": "Cairo Airport Transfers",
+  "url": siteUrl,
+  "logo": `${siteUrl}/images/logo/logo-brand.png`,
+  "image": `${siteUrl}/images/hero-banner.jpg`,
+  "telephone": "+201090008888",
+  "priceRange": "$$",
+  "currenciesAccepted": "USD, EUR, GBP, EGP",
+  "paymentAccepted": "Credit Card, Debit Card, Apple Pay, Cash",
+  "areaServed": [
+    { "@type": "Airport", "name": "Cairo International Airport", "iataCode": "CAI" },
+    { "@type": "Airport", "name": "Sphinx International Airport", "iataCode": "SPX" },
+    { "@type": "AdministrativeArea", "name": "Cairo" },
+    { "@type": "AdministrativeArea", "name": "Giza" },
+    { "@type": "AdministrativeArea", "name": "Alexandria" }
+  ],
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Cairo Airport Transfers Dispatch Co.",
+    "telephone": "+201090008888",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cairo International Airport Terminal 3 Access Rd",
+      "addressLocality": "Heliopolis",
+      "addressRegion": "Cairo",
+      "postalCode": "11776",
+      "addressCountry": "EG"
+    }
+  }
+};
 ---
 
 <!doctype html>
@@ -15,24 +63,53 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/hero-banner.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:site_name" content="Cairo Airport Transfers" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data Injection -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultSchema)} />
+    {schema && (
+      <script 
+        type="application/ld+json" 
+        set:html={JSON.stringify(Array.isArray(schema) ? schema : [schema])} 
+      />
+    )}
+
+    <meta name="generator" content={Astro.generator} />
+
     <style is:global>
       body {
         font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
         color: #1e293b;
         background-color: #ffffff;
       }
-      /* Custom styled scrollbars */
       ::-webkit-scrollbar {
         width: 8px;
       }

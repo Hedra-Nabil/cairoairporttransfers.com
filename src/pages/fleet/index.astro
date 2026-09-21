@@ -1,0 +1,211 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookingSearchWidget from '../../components/BookingSearchWidget.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { fleetVehicles } from '../../data/fleet';
+
+const pageTitle = "Cairo Airport Transfer Fleet | Sedan, Minivan & VIP Mercedes";
+const pageDesc = "Explore our modern Cairo airport transfer fleet. View exact passenger and luggage capacities for private sedans, family minivans, executive Mercedes, and minibuses.";
+const canonicalUrl = "https://cairoairporttransfers.com/fleet";
+
+const fleetSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cairo Airport Transfers Fleet Categories",
+  "itemListElement": fleetVehicles.map((v, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": v.name,
+    "description": v.description
+  }))
+};
+---
+
+<Layout 
+  title={pageTitle} 
+  description={pageDesc} 
+  canonicalUrl={canonicalUrl}
+  schema={fleetSchema}
+>
+  <Header />
+
+  <main class="bg-white">
+    <!-- Hero Banner -->
+    <section class="relative bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div class="max-w-6xl mx-auto space-y-4">
+        <Breadcrumbs items={[{ name: "Vehicle Fleet & Luggage", url: "/fleet" }]} />
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider">
+          Inspected & Licensed Fleet
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white max-w-3xl">
+          Cairo Airport Transfer Vehicle Fleet & Luggage Guide
+        </h1>
+
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+          From solo travelers with carry-ons to large tour groups with heavy expedition gear, explore our verified vehicles and choose the perfect fit for your arrival in Cairo.
+        </p>
+
+        <div class="pt-6">
+          <BookingSearchWidget />
+        </div>
+      </div>
+    </section>
+
+    <!-- Luggage & Capacity Comparison Table -->
+    <section class="py-16 bg-slate-50 border-b border-slate-200/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            CAPACITY MATRIX
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Vehicle Passenger & Luggage Allowance
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            Standard large suitcase: 28 inches (70 cm / 23 kg). Cabin bag: 20–22 inches.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-900 text-white text-[11px] uppercase tracking-wider">
+              <tr>
+                <th class="p-4">Vehicle Category</th>
+                <th class="p-4">Max Passengers</th>
+                <th class="p-4">Large Checked Bags</th>
+                <th class="p-4">Hand Luggage</th>
+                <th class="p-4">Popular Models</th>
+                <th class="p-4">Sample Cairo Rate</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+              {fleetVehicles.map((v) => (
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="p-4 font-bold text-slate-900 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    {v.name}
+                  </td>
+                  <td class="p-4">{v.maxPax} Passengers</td>
+                  <td class="p-4">{v.maxLuggageLarge} Large Suitcases</td>
+                  <td class="p-4">{v.maxLuggageCabin} Carry-ons</td>
+                  <td class="p-4 text-slate-500">{v.models.join(", ")}</td>
+                  <td class="p-4 font-black text-slate-900">${v.samplePriceCairo} USD</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Individual Vehicle Detailed Cards -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {fleetVehicles.map((v, idx) => (
+          <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            
+            <!-- Visual Box -->
+            <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-slate-200 shadow-lg relative h-72 sm:h-96">
+              <img src={v.image} alt={v.name} class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-amber-400 text-slate-950 font-black text-xs uppercase rounded-lg shadow-sm">
+                  {v.tag}
+                </span>
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white">
+                <div>
+                  <span class="text-xs text-slate-300 block">Fleet Category</span>
+                  <span class="text-lg font-black">{v.category}</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-slate-300 block">Cairo Starting Fare</span>
+                  <span class="text-xl font-black text-amber-400">${v.samplePriceCairo}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content Box -->
+            <div class="lg:col-span-6 space-y-5">
+              <div class="space-y-1">
+                <span class="text-xs font-black uppercase text-indigo-600 tracking-wider">
+                  {v.category}
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  {v.name}
+                </h3>
+              </div>
+
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                {v.description}
+              </p>
+
+              <!-- Features Grid -->
+              <div class="space-y-2">
+                <span class="text-xs font-bold uppercase text-slate-400 block">Vehicle Features:</span>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+                  {v.features.map((f) => (
+                    <li class="flex items-center gap-2">
+                      <span class="text-emerald-500 font-bold">✓</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600">
+                <strong class="text-slate-900">Best Suited For:</strong> {v.bestFor}
+              </div>
+
+              <div class="pt-2 flex items-center gap-4">
+                <a 
+                  href="/transfers" 
+                  class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-md transition"
+                >
+                  Book This Vehicle Class
+                </a>
+                <a 
+                  href="/transfers" 
+                  class="text-xs font-bold text-indigo-600 hover:underline"
+                >
+                  View Destinations & Rates →
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Child Seats & Special Luggage Callout -->
+    <section class="py-16 bg-slate-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-black">
+          Traveling with Oversized Luggage, Golf Bags, or Infant Seats?
+        </h2>
+        <p class="text-slate-300 text-sm leading-relaxed max-w-2xl mx-auto">
+          We provide complimentary infant and booster seats on request, and our spacious private minivans easily accommodate folding wheelchairs, diving equipment, and golf bags. Simply let our 24/7 dispatch know during booking.
+        </p>
+        <div class="pt-4">
+          <a 
+            href="https://wa.me/201090008888" 
+            target="_blank" 
+            class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-lg transition"
+          >
+            <span>Inquire via WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const pageTitle = "Cairo Airport Transfers FAQ | Answers to All Traveler Questions";
+const pageDesc = "Find answers to frequently asked questions about Cairo airport transfers: arrival meeting points, flight delay policy, pricing, luggage rules, and cancellations.";
+const canonicalUrl = "https://cairoairporttransfers.com/faq";
+
+const faqCategories = [
+  {
+    category: "Arrival & Meet and Greet",
+    items: [
+      {
+        q: "Where will my chauffeur meet me at Cairo International Airport?",
+        a: "Your chauffeur will wait inside the public arrivals hall of Terminal 1, Terminal 2, or Terminal 3 immediately after you exit customs and baggage claim. They hold an official sign clearly displaying your name."
+      },
+      {
+        q: "What happens if my inbound flight is delayed?",
+        a: "We track all flights in real-time using your flight number. Your chauffeur's pickup schedule is automatically adjusted to your actual landing time at zero extra cost. Your free 60-minute waiting time begins only after the aircraft lands."
+      },
+      {
+        q: "How will I recognize my driver?",
+        a: "Your driver will hold a prominent greeting board with your full name. We also send you your driver's direct mobile phone number and WhatsApp contact 2 hours prior to your scheduled landing time."
+      }
+    ]
+  },
+  {
+    category: "Pricing, Payment & Currency",
+    items: [
+      {
+        q: "Are transfer fares charged per person or per vehicle?",
+        a: "All prices on Cairo Airport Transfers are strictly per private vehicle, covering your entire party and all luggage up to the vehicle's capacity."
+      },
+      {
+        q: "What currencies do you accept?",
+        a: "We accept payments in USD, EUR, GBP, and Egyptian Pounds (EGP). All major credit cards, debit cards, and Apple Pay are accepted online."
+      },
+      {
+        q: "Are airport parking fees and highway tolls included?",
+        a: "Yes, 100%. All highway tolls, airport gate fees, parking charges, and taxes are completely included in your quoted fare. There are no hidden fees or unexpected tips demanded upon arrival."
+      }
+    ]
+  },
+  {
+    category: "Luggage, Vehicles & Child Safety",
+    items: [
+      {
+        q: "How much luggage can I bring in a Standard Sedan?",
+        a: "A standard private sedan comfortably accommodates up to 3 passengers with 2 to 3 large checked suitcases (up to 28 inches / 23 kg each) plus small carry-ons."
+      },
+      {
+        q: "Are child car seats or infant booster seats available?",
+        a: "Yes, we provide sanitized rear-facing infant seats and forward-facing booster seats upon request during booking at no additional charge."
+      },
+      {
+        q: "Can you transport folding wheelchairs or golf bags?",
+        a: "Yes. Our private minivans have generous trunk space easily capable of holding folding wheelchairs, diving equipment, or golf bags."
+      }
+    ]
+  },
+  {
+    category: "Cancellations & Modifications",
+    items: [
+      {
+        q: "What is your cancellation policy?",
+        a: "You can cancel or modify your transfer reservation free of charge with a 100% full refund up to 24 hours prior to your scheduled pickup time."
+      },
+      {
+        q: "What if my flight to Cairo is cancelled by the airline?",
+        a: "If your flight is cancelled or rescheduled by your airline, simply notify our dispatch team on WhatsApp or email, and we will update your booking or issue a full refund immediately."
+      }
+    ]
+  }
+];
+
+const allFaqs = faqCategories.flatMap(c => c.items);
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allFaqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
+---
+
+<Layout 
+  title={pageTitle} 
+  description={pageDesc} 
+  canonicalUrl={canonicalUrl}
+  schema={faqSchema}
+>
+  <Header />
+
+  <main class="bg-white">
+    <div class="bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-4 text-center md:text-left">
+        <Breadcrumbs items={[{ name: "Help Center & FAQ", url: "/faq" }]} />
+        <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider rounded-full">
+          Frequently Asked Questions
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          Cairo Airport Transfers Help Center
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+          Everything you need to know about booking, airport arrival procedures, fixed pricing, and luggage policies.
+        </p>
+      </div>
+    </div>
+
+    <!-- Categorized FAQ Accordions -->
+    <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {faqCategories.map((cat) => (
+        <div class="space-y-4">
+          <h2 class="text-xl font-black text-slate-900 border-b border-slate-200 pb-2">
+            {cat.category}
+          </h2>
+          <div class="space-y-3">
+            {cat.items.map((item) => (
+              <details class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 open:bg-white open:border-amber-400 open:shadow-md transition">
+                <summary class="font-bold text-slate-900 text-sm sm:text-base cursor-pointer list-none flex items-center justify-between">
+                  <span>{item.q}</span>
+                  <span class="text-amber-500 font-bold group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Still Have Questions? -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200/60">
+      <div class="max-w-3xl mx-auto px-4 text-center space-y-4">
+        <h3 class="text-xl sm:text-2xl font-black text-slate-900">
+          Have a Specific Question About Your Arrival?
+        </h3>
+        <p class="text-slate-600 text-sm">
+          Our Cairo airport dispatch team is online 24 hours a day on WhatsApp to assist with flight schedules, oversized baggage, or custom multi-destination itineraries.
+        </p>
+        <div class="pt-2 flex justify-center gap-4">
+          <a 
+            href="https://wa.me/201090008888" 
+            target="_blank" 
+            class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-md transition"
+          >
+            Chat with Cairo Dispatch on WhatsApp
+          </a>
+          <a 
+            href="/contact" 
+            class="px-6 py-3 bg-white border border-slate-200 hover:border-slate-300 text-slate-800 font-bold text-xs rounded-xl transition"
+          >
+            Contact Support Form
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

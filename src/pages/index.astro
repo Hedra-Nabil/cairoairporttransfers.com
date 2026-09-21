@@ -4,71 +4,145 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import PopularTransfers from '../components/PopularTransfers.astro';
 import FleetCategories from '../components/FleetCategories.astro';
-import CustomiseJourney from '../components/CustomiseJourney.astro';
-import AirportOverview from '../components/AirportOverview.astro';
-import GuaranteeBadges from '../components/GuaranteeBadges.astro';
-import PickupAndBookingGuides from '../components/PickupAndBookingGuides.astro';
-import DestinationsGrid from '../components/DestinationsGrid.astro';
-import ServiceFeatures from '../components/ServiceFeatures.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import InformationAccordions from '../components/InformationAccordions.astro';
 import FAQSection from '../components/FAQSection.astro';
 import PreFooterCTA from '../components/PreFooterCTA.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const siteUrl = "https://cairoairporttransfers.com";
+const pageTitle = "Book & Reserve Cairo Airport Private Transfers & Limousine | CAI";
+const pageDesc = "Book & reserve Cairo airport private transfers & luxury limousine to Giza Pyramids or Downtown. Fixed transparent rates, inside Meet & Greet & 24/7 dispatch.";
+
+// Rich JSON-LD Schemas (TaxiService, BreadcrumbList, FAQPage)
+const homeSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "@id": `${siteUrl}/#service`,
+    "name": "Cairo Airport Transfers",
+    "serviceType": "Airport Transfer & Limousine Service",
+    "url": siteUrl,
+    "logo": `${siteUrl}/images/logo/logo-brand.png`,
+    "image": `${siteUrl}/images/hero-banner.jpg`,
+    "telephone": "+201090008888",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD, EUR, GBP, EGP",
+    "paymentAccepted": "Credit Card, Debit Card, Apple Pay, Cash",
+    "areaServed": [
+      { "@type": "Airport", "name": "Cairo International Airport", "iataCode": "CAI" },
+      { "@type": "Airport", "name": "Sphinx International Airport", "iataCode": "SPX" },
+      { "@type": "AdministrativeArea", "name": "Cairo" },
+      { "@type": "AdministrativeArea", "name": "Giza" },
+      { "@type": "AdministrativeArea", "name": "Alexandria" }
+    ],
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Cairo Airport Transfers Dispatch Co.",
+      "telephone": "+201090008888",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cairo International Airport Terminal 3 Access Rd",
+        "addressLocality": "Heliopolis",
+        "addressRegion": "Cairo",
+        "postalCode": "11776",
+        "addressCountry": "EG"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteUrl
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where will I meet my driver at Cairo International Airport?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your chauffeur will wait inside the public arrivals hall of your designated arrival terminal (Terminal 1, Terminal 2, or Terminal 3), immediately after you pass through customs and baggage claim. They will hold an official greeting sign clearly displaying your name."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if my flight to Cairo is delayed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No need to worry! We track your flight in real time using the flight number provided during booking. Your pickup time is automatically synchronized with your actual landing time. Your complimentary 60-minute wait time begins only when your flight actually lands."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the prices listed per person or per vehicle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All our prices are 100% per vehicle, not per passenger. The price shown for your selected vehicle covers your entire party up to the vehicle's maximum passenger and luggage capacity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can my driver assist with getting a local Egyptian SIM card or ATM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, absolutely! The main arrivals halls have official telecom booths (Vodafone, Orange, e&, WE) and bank ATMs. Your driver will gladly wait for you while you purchase a local SIM card or exchange currency before escorting you to the vehicle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does free cancellation work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can cancel or modify your transfer reservation free of charge up to 24 hours prior to your scheduled pickup time with a 100% full refund, no questions asked. Simply contact our support team or WhatsApp dispatch."
+        }
+      }
+    ]
+  }
+];
 ---
 
 <Layout 
-  title="Cairo International Airport Transfers | Official Airport Taxi & Shuttles"
-  description="Book reliable, low-cost private airport transfers from Cairo International Airport (CAI) to Downtown, Giza Pyramids, New Cairo, and Alexandria. Door-to-door service, free flight monitoring, 24/7 customer support and free cancellation."
+  title={pageTitle}
+  description={pageDesc}
+  canonicalUrl={siteUrl}
+  schema={homeSchemas}
 >
-  <!-- Main Header & Navigation -->
+  <!-- Global Navigation Header -->
   <Header />
 
-  <main>
-    <!-- Hero Banner with Integrated Search Booking Engine -->
+  <main class="space-y-0">
+    <!-- 1. Hero Banner with Integrated Search Engine & Consolidated Trust Strip -->
     <Hero />
 
-    <!-- Popular Transfers Grid -->
+    <!-- 2. Popular Hotel & City Transfers (Programmatic Routes Linkage) -->
     <PopularTransfers />
 
-    <!-- Fleet Categories (Start your journey from Cairo) -->
+    <!-- 3. Vehicle Classes & Capacities (Fleet Guide) -->
     <FleetCategories />
 
-    <!-- Private Transfers & Customise Journey Split Form -->
-    <CustomiseJourney />
-
-    <!-- Cairo Airport Overview Guide -->
-    <AirportOverview />
-
-    <!-- 4 Guarantee Pillars (Meet & Greet, Flight Tracking, Fixed Prices, Free Cancel) -->
-    <GuaranteeBadges />
-
-    <!-- Pickup & Online Booking Guidance Cards -->
-    <PickupAndBookingGuides />
-
-    <!-- Places to Travel / Destinations Grid -->
-    <DestinationsGrid />
-
-    <!-- Service Features & Everything You Need to Know Checklist -->
-    <ServiceFeatures />
-
-    <!-- 3 Simple Steps How It Works -->
+    <!-- 4. How Your Airport Pickup Works (3 Simple Steps) -->
     <HowItWorks />
 
-    <!-- Return, Luggage & Terminal Meeting Points Accordions -->
-    <InformationAccordions />
-
-    <!-- Frequently Asked Questions -->
+    <!-- 5. Frequently Asked Questions (Structured FAQ Accordion) -->
     <FAQSection />
 
-    <!-- Pre-Footer Call to Action Banner -->
+    <!-- 6. Pre-Footer Call to Action Banner -->
     <PreFooterCTA />
   </main>
 
-  <!-- Complete Multi-Column Footer with Newsletter -->
+  <!-- Global Footer with Silo Link Architecture -->
   <Footer />
 
-  <!-- Floating WhatsApp Dispatch Button -->
+  <!-- Instant 24/7 WhatsApp Concierge Button -->
   <WhatsAppFloat />
 </Layout>

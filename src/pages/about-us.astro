@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const pageTitle = "About Us & Safety Standards | Cairo Airport Transfers";
+const pageDesc = "Learn about Cairo Airport Transfers. Ministry of Tourism licensing, rigorous driver background vetting, passenger insurance, and 24/7 local dispatch.";
+const canonicalUrl = "https://cairoairporttransfers.com/about-us";
+---
+
+<Layout title={pageTitle} description={pageDesc} canonicalUrl={canonicalUrl}>
+  <Header />
+
+  <main class="bg-white">
+    <div class="bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-4 text-center md:text-left">
+        <Breadcrumbs items={[{ name: "About Us", url: "/about-us" }]} />
+        <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider rounded-full">
+          Official Tourism Transport
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          About Cairo Airport Transfers
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+          Founded with a clear mission: to provide international travelers landing in Egypt with transparent, dependable, and dignified ground transportation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Safety & Vetting Pillars -->
+    <section class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-4">
+          <span class="text-xs font-black uppercase text-indigo-600 tracking-wider">Our Story</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Fixing the Cairo Airport Arrival Experience
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            For decades, international travelers arriving at Cairo International Airport (CAI) had to negotiate chaotic arrival halls, aggressive taxi touts, and unmetered street cabs with questionable safety standards.
+          </p>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            We built Cairo Airport Transfers to give travelers complete peace of mind. By booking your fixed-rate private chauffeur ahead of time, you step off the plane knowing a professional driver is already waiting inside your arrival terminal with your name board, ready to escort you directly to your vehicle.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-6">
+          <h3 class="text-lg font-black text-slate-900">Company Credentials</h3>
+          <ul class="space-y-4 text-xs sm:text-sm text-slate-700">
+            <li class="flex items-start gap-3">
+              <span class="text-amber-500 font-bold text-base">🛡️</span>
+              <div>
+                <strong>Egyptian Ministry of Tourism:</strong> Official Tourism Transport License #49281.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-500 font-bold text-base">👮</span>
+              <div>
+                <strong>100% Police Vetted Chauffeurs:</strong> Mandatory criminal history background checks and regular drug screenings.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-500 font-bold text-base">🚗</span>
+              <div>
+                <strong>Commercial Insurance:</strong> Comprehensive passenger liability coverage on all operating vehicles.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-amber-500 font-bold text-base">🕒</span>
+              <div>
+                <strong>24/7 Operations Room:</strong> Round-the-clock bilingual dispatchers monitoring flight statuses and driver positions.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Trust Metrics -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-100 text-center">
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+          <span class="text-3xl font-black text-slate-900 block">15,800+</span>
+          <span class="text-xs text-slate-500 mt-1 block">Completed Cairo Transfers</span>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+          <span class="text-3xl font-black text-amber-500 block">4.9 / 5</span>
+          <span class="text-xs text-slate-500 mt-1 block">Average Customer Rating</span>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+          <span class="text-3xl font-black text-indigo-600 block">60 Mins</span>
+          <span class="text-xs text-slate-500 mt-1 block">Free Airport Waiting Time</span>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+          <span class="text-3xl font-black text-emerald-600 block">100%</span>
+          <span class="text-xs text-slate-500 mt-1 block">Guaranteed Fixed Rates</span>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

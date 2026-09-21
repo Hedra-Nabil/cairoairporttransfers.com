@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookingSearchWidget from '../../components/BookingSearchWidget.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { airportGuides, type AirportGuideData } from '../../data/airports';
+import { transferRoutes } from '../../data/routes';
+
+export async function getStaticPaths() {
+  return airportGuides.map((guide) => ({
+    params: { terminal: guide.slug },
+    props: { guide },
+  }));
+}
+
+interface Props {
+  guide: AirportGuideData;
+}
+
+const { guide } = Astro.props;
+
+const siteUrl = "https://cairoairporttransfers.com";
+const pageUrl = `${siteUrl}/airports/${guide.slug}`;
+
+const terminalSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CivicStructure",
+    "@id": `${pageUrl}#airport`,
+    "name": guide.name,
+    "url": pageUrl,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cairo",
+      "addressRegion": "Cairo Governorate",
+      "addressCountry": "EG"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": guide.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  }
+];
+---
+
+<Layout 
+  title={guide.metaTitle} 
+  description={guide.metaDescription}
+  canonicalUrl={pageUrl}
+  schema={terminalSchema}
+>
+  <Header />
+
+  <main class="bg-white">
+    <!-- Hero Banner -->
+    <section class="relative bg-slate-950 text-white pt-10 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/images/hero-banner.jpg" 
+          alt={guide.name} 
+          class="w-full h-full object-cover opacity-30"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/60"></div>
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto space-y-5">
+        <Breadcrumbs items={[
+          { name: "Airports & Terminals", url: "/airports/cairo-international-airport" },
+          { name: guide.shortTitle, url: `/airports/${guide.slug}` }
+        ]} />
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider border border-amber-400/30">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          {guide.badge}
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+          {guide.headline}
+        </h1>
+
+        <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+          {guide.subheadline}
+        </p>
+
+        <!-- Key Distance Metrics -->
+        <div class="flex flex-wrap gap-4 pt-2 text-xs font-bold text-slate-200">
+          <div class="bg-slate-900/90 px-4 py-2.5 rounded-xl border border-slate-800">
+            <span class="text-amber-400">🏙️ Downtown Cairo:</span> {guide.distanceToDowntown}
+          </div>
+          <div class="bg-slate-900/90 px-4 py-2.5 rounded-xl border border-slate-800">
+            <span class="text-amber-400">🔺 Giza Pyramids:</span> {guide.distanceToPyramids}
+          </div>
+        </div>
+
+        <!-- Master Booking Widget -->
+        <div class="pt-6">
+          <BookingSearchWidget />
+        </div>
+      </div>
+    </section>
+
+    <!-- Meeting Point Protocol -->
+    <section class="py-16 md:py-24 bg-slate-50 border-b border-slate-200/60">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            DRIVER MEETUP INSTRUCTIONS
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            How to Meet Your Chauffeur at {guide.terminalCode}
+          </h2>
+          <p class="text-slate-600 text-sm mt-2">
+            {guide.meetingPoint.description}
+          </p>
+        </div>
+
+        <!-- Step by Step List -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {guide.meetingPoint.stepByStep.map((step, idx) => (
+            <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-xs flex items-start gap-4">
+              <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                0{idx + 1}
+              </span>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                {step}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Practical Tips Callout -->
+        <div class="p-6 rounded-2xl bg-indigo-50/60 border border-indigo-100 space-y-3">
+          <h3 class="text-sm font-black text-indigo-950 flex items-center gap-2">
+            <span>💡 Essential Passenger Tips for {guide.terminalCode}</span>
+          </h3>
+          <ul class="space-y-2 text-xs text-indigo-900">
+            {guide.meetingPoint.tips.map((tip) => (
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-600 font-bold">•</span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operating Airlines Directory -->
+    <section class="py-16 bg-white border-b border-slate-200/60">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            AIRLINE CARRIERS
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Airlines Operating at {guide.terminalCode}
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            If your flight is operated by any of these airlines, you will arrive through this terminal:
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2.5">
+          {guide.airlinesServed.map((airline) => (
+            <span class="px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 shadow-xs flex items-center gap-2">
+              <span class="text-indigo-600">✈️</span>
+              {airline}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Terminal Facilities & Amenities -->
+    <section class="py-16 bg-slate-50 border-b border-slate-200/60">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            SERVICES & CONVENIENCES
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Passenger Facilities at {guide.terminalCode}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {guide.facilities.map((fac) => (
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
+              <span class="text-xs font-bold text-slate-800">{fac}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="py-16 md:py-24 bg-white border-b border-slate-200/60">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            HELPFUL ANSWERS
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Frequently Asked Questions: {guide.shortTitle}
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {guide.faqs.map((faq) => (
+            <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200 open:bg-white open:border-amber-400 open:shadow-md transition">
+              <summary class="font-bold text-slate-900 text-base cursor-pointer list-none flex items-center justify-between">
+                <span>{faq.q}</span>
+                <span class="text-amber-500 font-bold group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                {faq.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Transfer Links from this Terminal -->
+    <section class="py-16 bg-slate-950 text-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-black">
+          Book Direct Transfers Departing from {guide.terminalCode}
+        </h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {transferRoutes.slice(0, 5).map((route) => (
+            <a 
+              href={`/transfers/${route.slug}`} 
+              class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-amber-400 rounded-xl border border-slate-800 text-xs font-bold transition"
+            >
+              {route.destinationName} (${route.startingPriceUSD}) →
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

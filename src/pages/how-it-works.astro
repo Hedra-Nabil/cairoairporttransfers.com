@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BookingSearchWidget from '../components/BookingSearchWidget.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const pageTitle = "How It Works | Cairo Airport Transfer Booking & Arrival Guide";
+const pageDesc = "Learn step-by-step how our private Cairo airport transfers work. From online reservation and live flight tracking to your arrival hall Meet & Greet.";
+const canonicalUrl = "https://cairoairporttransfers.com/how-it-works";
+---
+
+<Layout title={pageTitle} description={pageDesc} canonicalUrl={canonicalUrl}>
+  <Header />
+
+  <main class="bg-white">
+    <div class="bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-4 text-center md:text-left">
+        <Breadcrumbs items={[{ name: "How It Works", url: "/how-it-works" }]} />
+        <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider rounded-full">
+          Simple 3-Step Process
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          How Our Cairo Airport Transfers Work
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+          From the moment you reserve online until you step through your hotel lobby doors, we ensure smooth, zero-stress ground transportation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Step-by-Step Walkthrough -->
+    <section class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- Step 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-4 flex justify-center">
+          <div class="w-32 h-32 rounded-3xl bg-amber-100 text-amber-600 flex flex-col items-center justify-center font-black shadow-inner">
+            <span class="text-4xl">01</span>
+            <span class="text-[10px] uppercase tracking-widest text-slate-500">Online</span>
+          </div>
+        </div>
+        <div class="md:col-span-8 space-y-3">
+          <span class="text-xs font-black uppercase text-indigo-600 tracking-wider">Step 1: Reservation</span>
+          <h2 class="text-2xl font-black text-slate-900">Book in 2 Minutes with Fixed Pricing</h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Select your arrival terminal, hotel destination, date, and party size. Choose from private sedans, minivans, or VIP Mercedes cars. Your quote includes all highway tolls, parking fees, and driver tips upfront. No hidden surcharges or airport meter arguments.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-slate-100 pt-16">
+        <div class="md:col-span-4 flex justify-center">
+          <div class="w-32 h-32 rounded-3xl bg-indigo-100 text-indigo-600 flex flex-col items-center justify-center font-black shadow-inner">
+            <span class="text-4xl">02</span>
+            <span class="text-[10px] uppercase tracking-widest text-slate-500">Live Track</span>
+          </div>
+        </div>
+        <div class="md:col-span-8 space-y-3">
+          <span class="text-xs font-black uppercase text-indigo-600 tracking-wider">Step 2: Flight Monitoring</span>
+          <h2 class="text-2xl font-black text-slate-900">We Monitor Your Inbound Flight Status</h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Our 24/7 Cairo dispatch center continuously monitors your flight number. Whether your flight lands 30 minutes early or faces heavy delays, your pickup time is synchronized automatically at zero extra cost. Your complimentary 60-minute wait time begins only when the wheels touch down.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-slate-100 pt-16">
+        <div class="md:col-span-4 flex justify-center">
+          <div class="w-32 h-32 rounded-3xl bg-emerald-100 text-emerald-600 flex flex-col items-center justify-center font-black shadow-inner">
+            <span class="text-4xl">03</span>
+            <span class="text-[10px] uppercase tracking-widest text-slate-500">Meet & Greet</span>
+          </div>
+        </div>
+        <div class="md:col-span-8 space-y-3">
+          <span class="text-xs font-black uppercase text-indigo-600 tracking-wider">Step 3: Arrival Meetup</span>
+          <h2 class="text-2xl font-black text-slate-900">Meet Your Chauffeur Inside the Arrivals Hall</h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            After clearing passport control, baggage claim, and customs, walk into the public arrivals greeting lounge. Your chauffeur will be waiting holding an official sign with your name. They assist with your suitcases, escort you to your vehicle, and drive you safely to your hotel.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Booking Widget -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200/60">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-center">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">
+          Ready to Book Your Cairo Transfer?
+        </h2>
+        <BookingSearchWidget />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

@@ -1,0 +1,251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookingSearchWidget from '../../components/BookingSearchWidget.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { transferRoutes } from '../../data/routes';
+
+const pageTitle = "Cairo Airport Transfers Catalog | All Destinations & Rates";
+const pageDesc = "Explore all private airport transfer routes from Cairo International Airport (CAI). Compare fixed prices, travel times, and book direct hotel transfers.";
+const canonicalUrl = "https://cairoairporttransfers.com/transfers";
+
+// Group routes by region
+const cairoRoutes = transferRoutes.filter(r => ["cairo-airport-to-downtown-cairo", "cairo-airport-to-zamalek", "cairo-airport-to-heliopolis"].includes(r.slug));
+const gizaRoutes = transferRoutes.filter(r => ["cairo-airport-to-giza-pyramids"].includes(r.slug));
+const eastRoutes = transferRoutes.filter(r => ["cairo-airport-to-new-cairo"].includes(r.slug));
+const intercityRoutes = transferRoutes.filter(r => ["cairo-airport-to-alexandria", "cairo-airport-to-ain-sokhna", "cairo-airport-to-hurghada"].includes(r.slug));
+
+const catalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cairo International Airport Transfer Routes",
+  "itemListElement": transferRoutes.map((route, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "url": `https://cairoairporttransfers.com/transfers/${route.slug}`,
+    "name": route.heroHeadline
+  }))
+};
+---
+
+<Layout 
+  title={pageTitle} 
+  description={pageDesc} 
+  canonicalUrl={canonicalUrl}
+  schema={catalogSchema}
+>
+  <Header />
+
+  <main class="bg-slate-50 min-h-screen">
+    <!-- Header Banner -->
+    <div class="bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto relative z-10 space-y-4 text-center md:text-left">
+        <Breadcrumbs items={[{ name: "Transfers", url: "/transfers" }]} />
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider">
+          Destination Directory
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          Cairo Airport Transfer Routes & Destinations
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+          Select your destination below to view route guides, verified drive times, terminal arrival instructions, and transparent vehicle class pricing.
+        </p>
+
+        <div class="pt-6">
+          <BookingSearchWidget />
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalog Sections -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+      
+      <!-- Region 1: Central & Historic Cairo -->
+      <section class="space-y-6">
+        <div class="border-b border-slate-200 pb-3 flex items-baseline justify-between">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">
+              Central Cairo & Historic Districts
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Downtown, Tahrir Square, Nile Islands & Transit Hotels</p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600">{cairoRoutes.length} Routes</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cairoRoutes.map((route) => (
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
+              <div class="relative h-44 overflow-hidden">
+                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
+                <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
+                  ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
+                </span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">{route.destinationName}</h3>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">{route.overview}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold block">From</span>
+                    <span class="text-2xl font-black text-slate-900">${route.startingPriceUSD}</span>
+                  </div>
+                  <a 
+                    href={`/transfers/${route.slug}`} 
+                    class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition"
+                  >
+                    View Route & Book →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Region 2: Giza Plateau & Ancient Wonders -->
+      <section class="space-y-6">
+        <div class="border-b border-slate-200 pb-3 flex items-baseline justify-between">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">
+              Giza Pyramids & West Cairo
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">The Great Pyramids, Sphinx & Grand Egyptian Museum (GEM)</p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600">{gizaRoutes.length} Route</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {gizaRoutes.map((route) => (
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
+              <div class="relative h-44 overflow-hidden">
+                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
+                <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
+                  ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
+                </span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">{route.destinationName}</h3>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">{route.overview}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold block">From</span>
+                    <span class="text-2xl font-black text-slate-900">${route.startingPriceUSD}</span>
+                  </div>
+                  <a 
+                    href={`/transfers/${route.slug}`} 
+                    class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition"
+                  >
+                    View Route & Book →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Region 3: East Cairo & Modern Districts -->
+      <section class="space-y-6">
+        <div class="border-b border-slate-200 pb-3 flex items-baseline justify-between">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">
+              New Cairo & Business Districts
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">5th Settlement, 90th Street & Cairo Festival City</p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600">{eastRoutes.length} Route</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {eastRoutes.map((route) => (
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
+              <div class="relative h-44 overflow-hidden">
+                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
+                <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
+                  ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
+                </span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">{route.destinationName}</h3>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">{route.overview}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold block">From</span>
+                    <span class="text-2xl font-black text-slate-900">${route.startingPriceUSD}</span>
+                  </div>
+                  <a 
+                    href={`/transfers/${route.slug}`} 
+                    class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition"
+                  >
+                    View Route & Book →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Region 4: Coastal & Intercity Transfers -->
+      <section class="space-y-6">
+        <div class="border-b border-slate-200 pb-3 flex items-baseline justify-between">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">
+              Intercity & Coastal Resort Transfers
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Direct long-distance highway transport to the Mediterranean and Red Sea</p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600">{intercityRoutes.length} Routes</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {intercityRoutes.map((route) => (
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
+              <div class="relative h-44 overflow-hidden">
+                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
+                <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
+                  ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
+                </span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">{route.destinationName}</h3>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">{route.overview}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold block">From</span>
+                    <span class="text-2xl font-black text-slate-900">${route.startingPriceUSD}</span>
+                  </div>
+                  <a 
+                    href={`/transfers/${route.slug}`} 
+                    class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-xs transition"
+                  >
+                    View Route & Book →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

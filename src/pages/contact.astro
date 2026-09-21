@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const pageTitle = "Contact Cairo Airport Transfers | 24/7 Customer Dispatch";
+const pageDesc = "Need assistance with your Cairo Airport transfer? Reach our 24/7 bilingual dispatch team via WhatsApp, phone, or direct contact form.";
+const canonicalUrl = "https://cairoairporttransfers.com/contact";
+---
+
+<Layout title={pageTitle} description={pageDesc} canonicalUrl={canonicalUrl}>
+  <Header />
+
+  <main class="bg-white">
+    <div class="bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-4 text-center md:text-left">
+        <Breadcrumbs items={[{ name: "Contact Dispatch", url: "/contact" }]} />
+        <span class="inline-block px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider rounded-full">
+          24/7 Operations Desk
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+          Contact Our 24/7 Cairo Dispatch
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+          Whether you need immediate flight updates, customized group quotes, or arrival assistance at Terminals 1, 2, or 3, we are standing by around the clock.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Details & Form Grid -->
+    <section class="py-16 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Contact Methods -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Direct Support Channels</h2>
+            <p class="text-slate-500 text-xs sm:text-sm mt-1">Available 24 hours a day, 7 days a week.</p>
+          </div>
+
+          <!-- WhatsApp Card -->
+          <a 
+            href="https://wa.me/201090008888" 
+            target="_blank" 
+            class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-start gap-4 hover:shadow-md transition block group"
+          >
+            <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-black flex-shrink-0">
+              💬
+            </div>
+            <div>
+              <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider block">Fastest Response</span>
+              <strong class="text-base text-slate-900 group-hover:text-emerald-700">WhatsApp Instant Dispatch</strong>
+              <p class="text-xs text-slate-600 mt-1">+20 (10) 9000-8888 (Average reply in under 2 mins)</p>
+            </div>
+          </a>
+
+          <!-- Phone Call -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black flex-shrink-0">
+              📞
+            </div>
+            <div>
+              <span class="text-xs font-bold text-indigo-700 uppercase tracking-wider block">24/7 Telephone Desk</span>
+              <strong class="text-base text-slate-900">+20 (10) 9000-8888</strong>
+              <p class="text-xs text-slate-600 mt-1">English & Arabic speaking airport dispatchers</p>
+            </div>
+          </div>
+
+          <!-- Office Address -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black flex-shrink-0">
+              📍
+            </div>
+            <div>
+              <span class="text-xs font-bold text-amber-800 uppercase tracking-wider block">Airport Office</span>
+              <strong class="text-base text-slate-900">Cairo Airport Terminal 3 Hub</strong>
+              <p class="text-xs text-slate-600 mt-1">Airport Road, Heliopolis, Cairo, Egypt</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Inquiry Form -->
+        <div class="lg:col-span-7">
+          <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm space-y-6">
+            <div>
+              <h3 class="text-xl font-extrabold text-slate-900">Send an Inquiry or Special Request</h3>
+              <p class="text-slate-500 text-xs mt-1">Fill out the form below and our team will get back to you shortly.</p>
+            </div>
+
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent successfully! Our dispatch will contact you shortly.');">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Your Full Name</label>
+                  <input type="text" required placeholder="e.g. Sarah Jenkins" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email Address</label>
+                  <input type="email" required placeholder="sarah@example.com" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">WhatsApp / Phone Number</label>
+                  <input type="tel" required placeholder="+44 7000 000000" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Flight Number (If Known)</label>
+                  <input type="text" placeholder="e.g. MS778 / BA155" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Message or Special Requirements</label>
+                <textarea rows="4" required placeholder="Tell us about your transfer dates, hotel destination, passenger count, or child seat requests..." class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-sm rounded-xl shadow-md transition">
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

@@ -2,6 +2,7 @@
 const destinations = [
   {
     name: "Downtown Cairo & Tahrir",
+    slug: "cairo-airport-to-downtown-cairo",
     tag: "City Center",
     desc: "Home to the historic Egyptian Museum, Tahrir Square, vibrant markets, and luxury Nile-view hotels in Zamalek and Garden City.",
     time: "35 - 45 mins",
@@ -12,6 +13,7 @@ const destinations = [
   },
   {
     name: "Giza Pyramids & Sphinx",
+    slug: "cairo-airport-to-giza-pyramids",
     tag: "Ancient Wonder",
     desc: "Marvel at the world-famous Great Pyramids of Khufu, Khafre, Menkaure, the Great Sphinx, and the state-of-the-art Grand Egyptian Museum (GEM).",
     time: "50 - 65 mins",
@@ -22,6 +24,7 @@ const destinations = [
   },
   {
     name: "New Cairo & 5th Settlement",
+    slug: "cairo-airport-to-new-cairo",
     tag: "Modern Capital",
     desc: "Cairo's premier modern district featuring upscale dining, Cairo Festival City, Dusit Thani, and seamless transit to the New Administrative Capital.",
     time: "20 - 30 mins",
@@ -32,6 +35,7 @@ const destinations = [
   },
   {
     name: "Alexandria & Med Coast",
+    slug: "cairo-airport-to-alexandria",
     tag: "Seaside City",
     desc: "Egypt's historical Mediterranean jewel boasting the Qaitbay Citadel, Stanley Bridge, Montaza Palace gardens, and the modern Bibliotheca.",
     time: "2.5 - 3 hours",
@@ -106,7 +110,7 @@ const destinations = [
                 <span class="text-xl font-black text-slate-900">{place.fromPrice}</span>
               </div>
               <a 
-                href="#search-booking" 
+                href={`/transfers/${place.slug}`} 
                 class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 group/link"
               >
                 <span>Book transfer</span>

@@ -1,6 +1,7 @@
 ---
 interface TransferRoute {
   id: string;
+  slug: string;
   name: string;
   destination: string;
   badge: string;
@@ -17,6 +18,7 @@ interface TransferRoute {
 const routes: TransferRoute[] = [
   {
     id: "downtown",
+    slug: "cairo-airport-to-downtown-cairo",
     name: "Cairo City Centre",
     destination: "Downtown Cairo / Tahrir Square / Zamalek",
     badge: "MOST POPULAR",
@@ -31,6 +33,7 @@ const routes: TransferRoute[] = [
   },
   {
     id: "giza",
+    slug: "cairo-airport-to-giza-pyramids",
     name: "Giza Pyramids Area",
     destination: "Mena House, Giza Plateau & Sphinx Hotels",
     badge: "TOP SIGHT",
@@ -45,6 +48,7 @@ const routes: TransferRoute[] = [
   },
   {
     id: "new-cairo",
+    slug: "cairo-airport-to-new-cairo",
     name: "New Cairo / Tagamoa",
     destination: "5th Settlement, Dusit Thani, Kempinski",
     badge: "FAST ROUTE",
@@ -59,6 +63,7 @@ const routes: TransferRoute[] = [
   },
   {
     id: "alexandria",
+    slug: "cairo-airport-to-alexandria",
     name: "Alexandria City & Coast",
     destination: "Corniche, Mediterranean Hotels & Port",
     badge: "INTERCITY",
@@ -74,25 +79,25 @@ const routes: TransferRoute[] = [
 ];
 ---
 
-<section id="popular-transfers" class="py-16 md:py-24 bg-slate-50 border-b border-slate-200/60">
+<section id="popular-transfers" class="py-20 md:py-24 bg-slate-50/60 border-b border-slate-100">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Heading -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
       <div>
         <div class="text-xs font-black tracking-widest text-indigo-600 uppercase mb-2">
-          FAVORITE TRANSFERS
+          FAVORITE DESTINATIONS
         </div>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Popular transfers from Cairo International Airport
+          Popular Hotel & City Transfers
         </h2>
-        <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl">
-          Fixed-price private transfers with guaranteed meet and greet at Terminal 1, 2, or 3 arrivals halls.
+        <p class="text-slate-500 text-sm sm:text-base mt-2 max-w-2xl">
+          Fixed-price private transfers with guaranteed Meet & Greet inside Terminal 1, 2, or 3 arrivals halls.
         </p>
       </div>
 
       <a 
-        href="#destinations" 
+        href="/transfers" 
         class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition group whitespace-nowrap"
       >
         <span>View all Cairo routes</span>
@@ -105,7 +110,7 @@ const routes: TransferRoute[] = [
     <!-- Routes Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {routes.map((route) => (
-        <div class="bg-white rounded-2xl border border-slate-200/90 hover:border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="bg-white rounded-2xl border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
           
           <!-- Card Image & Badge -->
           <div class="relative h-44 overflow-hidden bg-slate-100">
@@ -172,7 +177,7 @@ const routes: TransferRoute[] = [
               </div>
 
               <a 
-                href="#search-booking" 
+                href={`/transfers/${route.slug}`} 
                 class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-sm hover:shadow transition flex items-center gap-1 group/btn"
               >
                 <span>Book</span>
