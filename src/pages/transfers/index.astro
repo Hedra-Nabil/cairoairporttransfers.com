@@ -7,8 +7,8 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
 import { transferRoutes } from '../../data/routes';
 
-const pageTitle = "Cairo Airport Transfers Catalog | All Destinations & Rates";
-const pageDesc = "Explore all private airport transfer routes from Cairo International Airport (CAI). Compare fixed prices, travel times, and book direct hotel transfers.";
+const pageTitle = "Cairo Airport Limousine Routes | All Destinations & Rates";
+const pageDesc = "Explore all Cairo Airport Limousine routes from Cairo International Airport (CAI). Compare fixed prices, travel times, and book direct hotel transfers.";
 const canonicalUrl = "https://cairoairportlimousines.com/transfers/";
 
 // Group routes by region
@@ -20,7 +20,7 @@ const intercityRoutes = transferRoutes.filter(r => ["cairo-airport-to-alexandria
 const catalogSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Cairo International Airport Transfer Routes",
+  "name": "Cairo Airport Limousine Transfer Routes",
   "itemListElement": transferRoutes.map((route, index) => ({
     "@type": "ListItem",
     "position": index + 1,
@@ -48,7 +48,7 @@ const catalogSchema = {
           Destination Directory
         </div>
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
-          Cairo Airport Transfer Routes & Destinations
+          Cairo Airport Limousine Routes & Destinations
         </h1>
         <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
           Select your destination below to view route guides, verified drive times, terminal arrival instructions, and transparent vehicle class pricing.
@@ -79,7 +79,15 @@ const catalogSchema = {
           {cairoRoutes.map((route) => (
             <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
               <div class="relative h-44 overflow-hidden">
-                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <img 
+                  src={route.featuredImage} 
+                  alt={route.destinationName} 
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover" 
+                />
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
                 <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
                   ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
@@ -124,7 +132,15 @@ const catalogSchema = {
           {gizaRoutes.map((route) => (
             <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
               <div class="relative h-44 overflow-hidden">
-                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <img 
+                  src={route.featuredImage} 
+                  alt={route.destinationName} 
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover" 
+                />
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
                 <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
                   ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
@@ -169,7 +185,15 @@ const catalogSchema = {
           {eastRoutes.map((route) => (
             <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
               <div class="relative h-44 overflow-hidden">
-                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <img 
+                  src={route.featuredImage} 
+                  alt={route.destinationName} 
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover" 
+                />
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
                 <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
                   ⏱️ {route.driveTimeMin} ({route.distanceKm} km)
@@ -214,7 +238,15 @@ const catalogSchema = {
           {intercityRoutes.map((route) => (
             <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-lg transition flex flex-col justify-between overflow-hidden">
               <div class="relative h-44 overflow-hidden">
-                <img src={route.featuredImage} alt={route.destinationName} class="w-full h-full object-cover" />
+                <img 
+                  src={route.featuredImage} 
+                  alt={route.destinationName} 
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover" 
+                />
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
                 <span class="absolute bottom-3 left-3 text-xs font-bold text-white flex items-center gap-1">
                   ⏱️ {route.driveTimeMin} ({route.distanceKm} km)

@@ -7,16 +7,18 @@ interface Props {
   ogImage?: string;
   type?: string;
   schema?: Record<string, any> | Record<string, any>[];
+  preloadImage?: string;
 }
 
 const {
-  title = "Book Cairo Airport Private Transfers & Limousine | CAI",
-  description = "Book Cairo airport private transfers & luxury limousine to Giza Pyramids or Downtown. 100% fixed rates, inside Meet & Greet & 24/7 dispatch support.",
+  title = "Cairo Airport Limousine | Official Airport Transfers & Chauffeur CAI",
+  description = "Cairo Airport Limousine provides official private airport transfers and luxury chauffeur service at Cairo International Airport (CAI) with guaranteed fixed rates.",
   canonicalUrl,
-  keywords = "Cairo airport private transfers, Cairo airport private limousine, Cairo airport transfers, Cairo airport limousine, Private Cairo airport transfers, Cairo international airport transfers, Transfer from Cairo airport, Cairo airport taxi, Egypt airports, book Cairo airport transfer, reserve Cairo airport limousine",
+  keywords = "Cairo airport limousine, Cairo airport private transfers, Cairo airport private limousine, Cairo airport transfers, Private Cairo airport transfers, Cairo international airport transfers, Transfer from Cairo airport, Cairo airport taxi, Egypt airports, book Cairo airport transfer, reserve Cairo airport limousine",
   ogImage = "/images/hero-banner.jpg",
   type = "website",
-  schema
+  schema,
+  preloadImage
 } = Astro.props;
 
 // Canonical URL generation
@@ -32,13 +34,13 @@ const defaultSchema = {
   "@context": "https://schema.org",
   "@type": ["TaxiService", "LimousineService"],
   "@id": `${siteUrl}/#service`,
-  "name": "Cairo Airport Transfers & Limousine",
+  "name": "Cairo Airport Limousine",
   "alternateName": [
-    "Cairo Airport Private Transfers",
-    "Cairo Airport Private Limousine",
-    "Cairo Airport Transfers",
     "Cairo Airport Limousine",
-    "Private Cairo Airport Transfers",
+    "Cairo Airport Transfers & Limousine",
+    "Cairo Airport Private Limousine",
+    "Cairo Airport Private Transfers",
+    "Cairo Airport Transfers",
     "Cairo International Airport Transfers",
     "Transfer from Cairo Airport"
   ],
@@ -52,7 +54,7 @@ const defaultSchema = {
   "url": `${siteUrl}/`,
   "logo": `${siteUrl}/images/logo/logo-brand.png`,
   "image": `${siteUrl}/images/hero-banner.jpg`,
-  "telephone": "+201090008888",
+  "telephone": "+201094066018",
   "priceRange": "$$",
   "currenciesAccepted": "USD, EUR, GBP, EGP",
   "paymentAccepted": "Credit Card, Debit Card, Apple Pay, Cash",
@@ -63,7 +65,7 @@ const defaultSchema = {
     { "@type": "AdministrativeArea", "name": "Giza" },
     { "@type": "AdministrativeArea", "name": "Alexandria" }
   ],
-  "description": "Official Cairo airport private transfers and luxury limousine service. Direct hotel pickup, inside terminal Meet & Greet, fixed transparent pricing, and 24/7 dispatch.",
+  "description": "Official Cairo airport private transfers and luxury limousine service. Direct hotel pickup, meet outside with name sign, fixed transparent pricing, and 24/7 dispatch.",
   "keywords": "Cairo airport private transfers, Cairo airport private limousine, Cairo airport transfers, Cairo airport limousine, Private Cairo airport transfers",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -103,8 +105,11 @@ const defaultSchema = {
   },
   "provider": {
     "@type": "LocalBusiness",
-    "name": "Cairo Airport Transfers Dispatch Co.",
-    "telephone": "+201090008888",
+    "name": "Cairo Airport Limousine Dispatch Co.",
+    "image": `${siteUrl}/images/hero-banner.jpg`,
+    "priceRange": "$$",
+    "telephone": "+201094066018",
+    "url": `${siteUrl}/`,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Cairo International Airport Terminal 3 Access Rd",
@@ -139,7 +144,7 @@ const defaultSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullOgImage} />
-    <meta property="og:site_name" content="Cairo Airport Transfers" />
+    <meta property="og:site_name" content="Cairo Airport Limousine" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Cards -->
@@ -149,10 +154,19 @@ const defaultSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImage} />
 
-    <!-- Preconnect Fonts -->
+    <!-- Resource Hints & Preload -->
+    {preloadImage && (
+      <link rel="preload" as="image" type="image/webp" href={preloadImage} fetchpriority="high" />
+    )}
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    </noscript>
 
     <!-- JSON-LD Structured Data Injection -->
     <script type="application/ld+json" set:html={JSON.stringify(defaultSchema)} />

@@ -33,14 +33,14 @@ export const airportGuides: AirportGuideData[] = [
     headline: "Cairo International Airport (CAI) Passenger & Transfer Guide",
     subheadline: "Everything you need to navigate Egypt's primary aviation gateway: Terminals 1, 2, and 3, arrivals procedures, baggage reclaim, and verified private taxi transfers.",
     meetingPoint: {
-      location: "Public Arrival Halls (All Terminals)",
-      description: "Chauffeurs greet travelers inside the designated public arrivals greeting hall immediately after customs and baggage claim with a personalized name board.",
+      location: "Outside Terminal Arrival Exit Doors (All Terminals)",
+      description: "Chauffeurs meet travelers right outside the arrival terminal exit doors immediately after customs and baggage claim with a personalized name sign.",
       stepByStep: [
         "Disembark and proceed through international quarantine and health counters.",
         "Purchase your Egypt Visa-on-Arrival at the official bank counters ($25 USD) before passport control if required.",
         "Pass through Egyptian immigration and enter the baggage claim carousel hall.",
         "Collect your checked luggage and walk through the customs screening checkpoint.",
-        "Enter the public arrival lounge where your designated driver is holding your name board."
+        "Step outside the arrival terminal exit doors where your designated driver is holding your name board."
       ],
       tips: [
         "Official SIM card booths (Vodafone, Orange, WE, e&) operate 24/7 inside the arrivals lounges.",
@@ -83,19 +83,19 @@ export const airportGuides: AirportGuideData[] = [
     name: "Cairo Airport Terminal 3 Guide (EgyptAir & Star Alliance)",
     shortTitle: "Terminal 3 (EgyptAir / Star Alliance)",
     metaTitle: "Cairo Airport Terminal 3 Guide | EgyptAir Arrivals & Transfers",
-    metaDescription: "Guide to Cairo Airport Terminal 3 (CAI T3). Dedicated to EgyptAir and Star Alliance flights. Customs instructions, arrival meeting point, and pre-booked transfers.",
+    metaDescription: "Guide to Cairo Airport Terminal 3 (CAI T3) for EgyptAir & Star Alliance flights. Customs guide, arrival meeting point, and pre-booked private transfers.",
     badge: "Flagship Terminal",
     headline: "Cairo Airport Terminal 3 (T3) Arrivals & Transfers Guide",
     subheadline: "Serving EgyptAir, Turkish Airlines, Lufthansa, Swiss, Ethiopian, and Star Alliance members. Learn where to meet your private chauffeur after customs.",
     meetingPoint: {
-      location: "Terminal 3 Public Arrival Hall (Curbside Barrier)",
-      description: "Directly opposite the customs sliding glass exit doors at the designated passenger greeting barrier.",
+      location: "Terminal 3 Outside Curbside Exit Area",
+      description: "Directly outside the Terminal 3 customs sliding glass exit doors at the passenger pickup area.",
       stepByStep: [
         "Exit the aircraft through the modern passenger jetbridge into Terminal 3 concourse.",
         "Clear Passport Control and collect your baggage at carousels 1 through 7.",
         "Pass through Customs inspection scanners.",
-        "Walk straight out into the main Terminal 3 greeting hall.",
-        "Your chauffeur will be waiting directly by the barrier holding a clear white board with your name."
+        "Walk straight out through the sliding glass exit doors to the covered curbside pickup lane.",
+        "Your chauffeur will be waiting directly outside holding a clear white board with your name."
       ],
       tips: [
         "Terminal 3 is directly connected to the luxury Le Méridien Cairo Airport hotel via an enclosed pedestrian footbridge.",
@@ -122,7 +122,7 @@ export const airportGuides: AirportGuideData[] = [
       },
       {
         q: "Where will my driver be waiting at Terminal 3?",
-        a: "Your driver will be positioned inside the air-conditioned arrival greeting lounge right after you exit the customs doors, holding a personalized name board."
+        a: "Your driver will be positioned right outside the Terminal 3 arrival glass exit doors at the covered pickup curb, holding an official personalized name board."
       }
     ]
   },
@@ -137,13 +137,13 @@ export const airportGuides: AirportGuideData[] = [
     headline: "Cairo Airport Terminal 2 (T2) Arrivals & Transfers Guide",
     subheadline: "Home to premier international flag carriers: British Airways, Emirates, Air France, Saudia, and Gulf airlines. Step-by-step arrivals and transfer pickup.",
     meetingPoint: {
-      location: "Terminal 2 Arrival Lobby (Near Bank & Telecom Counters)",
-      description: "Inside the primary Terminal 2 arrivals hall, positioned directly past the customs declaration gates by the info kiosk.",
+      location: "Terminal 2 Outside Arrival Exit Doors",
+      description: "Directly outside the primary Terminal 2 arrival sliding doors at the covered passenger greeting area.",
       stepByStep: [
         "Follow the elevated moving walkways to Terminal 2 immigration counters.",
         "Collect your baggage from the baggage hall.",
-        "Pass customs inspection and step into the public reception lounge.",
-        "Locate your driver holding your name placard near the center information display."
+        "Pass customs inspection and walk through the sliding glass exit doors.",
+        "Locate your driver waiting right outside the exit holding your name placard."
       ],
       tips: [
         "Terminal 2 is adjacent to Terminal 3 and shares convenient covered bridge access.",
@@ -227,7 +227,7 @@ export const airportGuides: AirportGuideData[] = [
     name: "Sphinx International Airport (SPX) Transfers & Guide",
     shortTitle: "Sphinx Airport (SPX) Guide",
     metaTitle: "Sphinx Airport Transfers (SPX) | Private Taxi to Giza Pyramids",
-    metaDescription: "Private airport transfers from Sphinx International Airport (SPX) directly to Giza Pyramids and West Cairo hotels. Fixed rates, Meet & Greet, and 24/7 dispatch.",
+    metaDescription: "Private transfers from Sphinx Airport (SPX) to Giza Pyramids and West Cairo hotels. Fixed rates from $35, driver meets outside with sign, and 24/7 dispatch.",
     badge: "West Cairo Gateway",
     headline: "Sphinx International Airport (SPX) Transfers & Passenger Guide",
     subheadline: "Located on the western outskirts of Cairo, only 25 minutes from the Giza Pyramids and Grand Egyptian Museum (GEM). Avoid downtown traffic entirely.",

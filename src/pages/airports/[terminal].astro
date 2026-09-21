@@ -7,6 +7,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
 import { airportGuides, type AirportGuideData } from '../../data/airports';
 import { transferRoutes } from '../../data/routes';
+import { ancillaryServices } from '../../data/ancillaries';
 
 export async function getStaticPaths() {
   return airportGuides.map((guide) => ({
@@ -152,6 +153,75 @@ const terminalSchema = [
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Airport Ancillaries & Arrival Add-ons -->
+    <section class="py-16 md:py-20 bg-white border-b border-slate-200/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            AIRPORT ANCILLARIES & VIP ADD-ONS
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            VIP Arrival Services & Extras at {guide.terminalCode}
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2">
+            Upgrade your arrival experience at Cairo Airport with our verified ancillary services. Fast-track immigration, pre-ordered Egyptian eSIM/SIM cards, certified baby car seats, and luxury lounge passes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {ancillaryServices.map((service) => (
+            <div class="bg-slate-50 rounded-2xl border border-slate-200 hover:bg-white hover:border-amber-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group overflow-hidden">
+              <div>
+                <!-- Service Image Box -->
+                <div class="relative h-44 w-full overflow-hidden bg-slate-900">
+                  <img 
+                    src={service.image} 
+                    alt={service.alt}
+                    title={service.alt}
+                    loading="lazy"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                  <span class={`absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-black uppercase rounded-md shadow-sm ${service.badgeColor}`}>
+                    {service.tag}
+                  </span>
+                  <span class="absolute bottom-2 left-2.5 px-2 py-0.5 rounded bg-black/60 backdrop-blur-xs text-[10px] font-bold text-slate-200">
+                    {service.arabicTitle}
+                  </span>
+                </div>
+
+                <div class="p-5 space-y-2">
+                  <h3 class="text-base font-extrabold text-slate-900 group-hover:text-indigo-600 transition">
+                    <a href={`/services/${service.slug}`}>
+                      {service.title}
+                    </a>
+                  </h3>
+                  <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                    {service.shortDescription}
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-5 pt-0">
+                <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
+                  <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block">From</span>
+                    <span class="text-sm font-black text-slate-900">${service.priceUSD} USD</span>
+                  </div>
+                  <a 
+                    href={`/services/${service.slug}`}
+                    class="px-3.5 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-xs rounded-xl shadow-xs transition transform hover:-translate-y-0.5"
+                  >
+                    Details & Book →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

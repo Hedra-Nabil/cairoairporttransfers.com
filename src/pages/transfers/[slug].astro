@@ -32,8 +32,10 @@ const routeSchemas = [
     "serviceType": "Airport Transfer",
     "provider": {
       "@type": "LocalBusiness",
-      "name": "Cairo Airport Transfers",
-      "telephone": "+201090008888",
+      "name": "Cairo Airport Limousine",
+      "image": `${siteUrl}/images/hero-banner.jpg`,
+      "priceRange": "$$",
+      "telephone": "+201094066018",
       "url": `${siteUrl}/`
     },
     "areaServed": [
@@ -92,6 +94,7 @@ const routeSchemas = [
   canonicalUrl={pageUrl}
   ogImage={route.featuredImage}
   schema={routeSchemas}
+  preloadImage={route.featuredImage}
 >
   <Header />
 
@@ -103,6 +106,10 @@ const routeSchemas = [
         <img 
           src={route.featuredImage} 
           alt={route.destinationName} 
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          decoding="async"
           class="w-full h-full object-cover opacity-35 scale-105"
           loading="eager"
         />
@@ -178,14 +185,21 @@ const routeSchemas = [
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <!-- Standard Sedan -->
-          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition">
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition group">
             <div>
-              <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Budget-Friendly</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">Standard Sedan</h3>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Budget-Friendly</span>
+              </div>
+              <div class="w-full h-24 my-2 flex items-center justify-center">
+                <img src="/images/fleet/private-taxi.jpg" alt="Standard Sedan - Toyota Corolla" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">
+                <a href="/fleet/private-taxi" class="hover:text-indigo-600 transition">Standard Sedan</a>
+              </h3>
               <p class="text-xs text-slate-500 mt-1">Up to 3 Passengers • 2 Suitcases</p>
               <ul class="mt-4 space-y-2 text-xs text-slate-600">
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> AC modern sedan</li>
-                <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Free Meet & Greet</li>
+                <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Driver meets outside with sign</li>
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Flight delay tracking</li>
               </ul>
             </div>
@@ -201,13 +215,20 @@ const routeSchemas = [
           </div>
 
           <!-- Private Minivan -->
-          <div class="p-6 rounded-2xl border-2 border-indigo-600 bg-indigo-50/30 flex flex-col justify-between relative shadow-md hover:shadow-xl transition">
+          <div class="p-6 rounded-2xl border-2 border-indigo-600 bg-indigo-50/30 flex flex-col justify-between relative shadow-md hover:shadow-xl transition group">
             <span class="absolute -top-3 right-4 px-2.5 py-0.5 bg-indigo-600 text-white text-[10px] font-black uppercase rounded-full shadow-sm">
               Most Popular
             </span>
             <div>
-              <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Family Choice</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">Private Minivan</h3>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Family Choice</span>
+              </div>
+              <div class="w-full h-24 my-2 flex items-center justify-center">
+                <img src="/images/fleet/private-minivan.jpg" alt="Private Minivan - Mercedes Vito" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">
+                <a href="/fleet/private-minivan" class="hover:text-indigo-600 transition">Private Minivan</a>
+              </h3>
               <p class="text-xs text-slate-500 mt-1">Up to 7 Passengers • 6 Suitcases</p>
               <ul class="mt-4 space-y-2 text-xs text-slate-600">
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> High luggage capacity</li>
@@ -227,10 +248,17 @@ const routeSchemas = [
           </div>
 
           <!-- VIP Mercedes -->
-          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition">
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition group">
             <div>
-              <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Executive</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">VIP Mercedes</h3>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Executive</span>
+              </div>
+              <div class="w-full h-24 my-2 flex items-center justify-center">
+                <img src="/images/fleet/executive-vip.jpg" alt="VIP Mercedes E-Class" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">
+                <a href="/fleet/executive-vip" class="hover:text-indigo-600 transition">VIP Mercedes</a>
+              </h3>
               <p class="text-xs text-slate-500 mt-1">Up to 3 Passengers • 3 Suitcases</p>
               <ul class="mt-4 space-y-2 text-xs text-slate-600">
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Mercedes E-Class / BMW</li>
@@ -250,10 +278,17 @@ const routeSchemas = [
           </div>
 
           <!-- Group Minibus -->
-          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition">
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between hover:shadow-lg transition group">
             <div>
-              <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Large Group</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">Private Minibus</h3>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-black uppercase text-indigo-600 tracking-wider">Large Group</span>
+              </div>
+              <div class="w-full h-24 my-2 flex items-center justify-center">
+                <img src="/images/fleet/airport-minibus.jpg" alt="Private Minibus - Mercedes Sprinter" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">
+                <a href="/fleet/airport-minibus" class="hover:text-indigo-600 transition">Private Minibus</a>
+              </h3>
               <p class="text-xs text-slate-500 mt-1">Up to 16 Passengers • 16 Suitcases</p>
               <ul class="mt-4 space-y-2 text-xs text-slate-600">
                 <li class="flex items-center gap-1.5"><span class="text-emerald-500 font-bold">✓</span> Toyota HiAce / Mercedes Sprinter</li>

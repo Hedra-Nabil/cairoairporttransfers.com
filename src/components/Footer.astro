@@ -7,19 +7,23 @@ import { airportGuides } from '../data/airports';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
     
     <!-- Multi-Column Topic Silo Links -->
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-xs sm:text-sm">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-xs sm:text-sm">
       
       <!-- Brand & About -->
       <div class="col-span-2 space-y-4">
         <a href="/" class="inline-block py-1">
           <img 
             src="/images/logo/logo-horizontal-white.png" 
-            alt="Cairo International Airport Transfers" 
+            alt="Cairo Airport Limousine" 
+            width="455"
+            height="100"
+            loading="lazy"
+            decoding="async"
             class="h-11 w-auto object-contain hover:opacity-90 transition-opacity"
           />
         </a>
         <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-          Egypt's premier private airport transfer platform. Serving Cairo International Airport (Terminals 1, 2, 3) and Sphinx Airport (SPX) with fixed rates, free delay tracking, and guaranteed meet and greet.
+          Egypt's premier Cairo Airport Limousine platform. Serving Cairo International Airport (Terminals 1, 2, 3) and Sphinx Airport (SPX) with fixed rates, free delay tracking, and driver waiting outside with your name sign.
         </p>
         <div class="pt-2 text-xs text-slate-500 space-y-1">
           <div>Cairo International Airport (CAI), Heliopolis, Cairo, Egypt</div>
@@ -42,7 +46,7 @@ import { airportGuides } from '../data/airports';
           ))}
           <li class="pt-1">
             <a href="/transfers" class="text-amber-400 font-bold hover:underline">
-              View All Destinations Hub →
+              All Routes →
             </a>
           </li>
         </ul>
@@ -64,27 +68,81 @@ import { airportGuides } from '../data/airports';
         </ul>
       </div>
 
-      <!-- Silo 3: Fleet, Trust & Support -->
+      <!-- Silo 3: Fleet Categories -->
       <div class="space-y-3">
         <h4 class="text-xs font-black uppercase tracking-wider text-white">
-          Company & Support
+          Fleet Categories
         </h4>
-        <ul class="space-y-2 text-slate-400">
-          <li><a href="/fleet" class="hover:text-amber-400 transition">Our Vehicle Fleet</a></li>
+        <ul class="space-y-1.5 text-slate-400">
+          <li><a href="/fleet/private-taxi" class="hover:text-amber-400 transition">Private Taxi</a></li>
+          <li><a href="/fleet/private-minivan" class="hover:text-amber-400 transition">Private Minivan</a></li>
+          <li><a href="/fleet/executive-vip" class="hover:text-amber-400 transition">VIP Mercedes</a></li>
+          <li><a href="/fleet/airport-minibus" class="hover:text-amber-400 transition">Minibus Shuttle</a></li>
+          <li class="pt-1"><a href="/fleet" class="text-amber-400 font-bold hover:underline">Luggage Guide →</a></li>
+        </ul>
+      </div>
+
+      <!-- Silo 4: Airport Extras -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">
+          Airport Extras
+        </h4>
+        <ul class="space-y-1.5 text-slate-400">
+          <li><a href="/services/vip-fast-track" class="hover:text-amber-400 transition">VIP Fast-Track</a></li>
+          <li><a href="/services/child-safety-seats" class="hover:text-amber-400 transition">Child Car Seats</a></li>
+          <li><a href="/services/egypt-tourist-sim" class="hover:text-amber-400 transition">Tourist 5G SIM</a></li>
+          <li><a href="/services/cairo-airport-lounges" class="hover:text-amber-400 transition">VIP Lounges</a></li>
+        </ul>
+      </div>
+
+      <!-- Silo 5: Company & Support -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">
+          Company & Help
+        </h4>
+        <ul class="space-y-1.5 text-slate-400">
           <li><a href="/how-it-works" class="hover:text-amber-400 transition">How It Works</a></li>
-          <li><a href="/about-us" class="hover:text-amber-400 transition">About Us & Safety</a></li>
-          <li><a href="/faq" class="hover:text-amber-400 transition">Help Center & FAQ</a></li>
-          <li><a href="/contact" class="hover:text-amber-400 transition">Contact Dispatch</a></li>
-          <li><a href="https://wa.me/201090008888" target="_blank" class="text-emerald-400 font-bold hover:underline">WhatsApp 24/7 Support</a></li>
+          <li><a href="/about-us" class="hover:text-amber-400 transition">About Us</a></li>
+          <li><a href="/faq" class="hover:text-amber-400 transition">FAQ</a></li>
+          <li><a href="/contact" class="hover:text-amber-400 transition">Contact Us</a></li>
+          <li><a href="https://wa.me/201094066018" target="_blank" class="text-emerald-400 font-bold hover:underline">WhatsApp 24/7</a></li>
         </ul>
       </div>
 
     </div>
 
+    <!-- Partner Network / Regional Airport Transfers Backlinks -->
+    <div class="border-t border-indigo-950/80 pt-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-white block mb-1">
+            Egypt Airport Network & Partner Services
+          </span>
+          <p class="text-xs text-slate-400">
+            Trusted private transfer and limousine services across Egypt's primary travel destinations:
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-bold">
+          <a href="https://egyptlimo.com" target="_blank" rel="noopener" class="text-slate-300 hover:text-amber-400 transition flex items-center gap-1.5">
+            <span>Egypt Limo</span>
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+          </a>
+          <a href="https://hurghadaairportlimosuine.com" target="_blank" rel="noopener" class="text-slate-300 hover:text-amber-400 transition flex items-center gap-1.5">
+            <span>Hurghada Airport Limousine</span>
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+          </a>
+          <a href="https://sharmelsheikhairporttransfer.com" target="_blank" rel="noopener" class="text-slate-300 hover:text-amber-400 transition flex items-center gap-1.5">
+            <span>Sharm El Sheikh Airport Transfer</span>
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Bottom Strip: Payment Badges & Legal -->
     <div class="border-t border-indigo-950 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <div>
-        © 2026 Cairo Airport Transfers. All rights reserved. Built with Astro & Tailwind CSS for Netlify.
+        © 2026 Cairo Airport Limousine. All rights reserved.
       </div>
 
       <!-- Payment Gateways Badges -->

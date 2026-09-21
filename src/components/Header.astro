@@ -13,7 +13,7 @@ import { airportGuides } from '../data/airports';
             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
           </svg>
           <span class="font-medium">24/7 Cairo Dispatch:</span>
-          <a href="tel:+201090008888" class="text-white hover:text-amber-400 font-semibold transition">+20 (10) 9000-8888</a>
+          <a href="tel:+201094066018" class="text-white hover:text-amber-400 font-semibold transition">+20 10-940-66018</a>
         </span>
         <span class="hidden md:inline-block text-slate-700">|</span>
         <span class="hidden md:flex items-center gap-1 text-slate-400">
@@ -50,7 +50,10 @@ import { airportGuides } from '../data/airports';
       <a href="/" class="flex items-center group py-2">
         <img 
           src="/images/logo/logo-horizontal.png" 
-          alt="Cairo International Airport Transfers" 
+          alt="Cairo Airport Limousine" 
+          width="455"
+          height="100"
+          fetchpriority="high"
           class="h-11 md:h-12 w-auto object-contain group-hover:opacity-95 transition-opacity"
         />
       </a>
@@ -121,8 +124,98 @@ import { airportGuides } from '../data/airports';
           </div>
         </div>
 
-        <!-- Fleet & Services Link -->
-        <a href="/fleet" class="hover:text-amber-500 transition">Vehicle Fleet</a>
+        <!-- Fleet & Services Dropdown -->
+        <div class="relative group py-6">
+          <a href="/fleet" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
+            <span>Vehicle Fleet</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
+            <div class="text-[10px] font-black uppercase text-slate-400 px-3 py-1.5 tracking-wider">Fleet Categories</div>
+            <div class="space-y-1">
+              <a href="/fleet/private-taxi" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Taxi</div>
+                  <div class="text-[10px] text-slate-400">Up to 3 Pax • Sedan</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">From $24</span>
+              </a>
+              <a href="/fleet/private-minivan" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Minivan</div>
+                  <div class="text-[10px] text-slate-400">Up to 7 Pax • Family</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">From $38</span>
+              </a>
+              <a href="/fleet/executive-vip" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Executive / VIP</div>
+                  <div class="text-[10px] text-slate-400">Mercedes-Benz E-Class</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">From $65</span>
+              </a>
+              <a href="/fleet/airport-minibus" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Airport Shuttle & Minibus</div>
+                  <div class="text-[10px] text-slate-400">Up to 16 Pax • Group</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">From $95</span>
+              </a>
+            </div>
+            <div class="pt-2 mt-2 border-t border-slate-100">
+              <a href="/fleet" class="block text-center py-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50/50 rounded-lg">
+                View Full Fleet & Luggage Guide →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airport VIP Services Dropdown -->
+        <div class="relative group py-6">
+          <button type="button" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
+            <span>Airport Extras</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div class="absolute left-0 top-full hidden group-hover:block w-76 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
+            <div class="text-[10px] font-black uppercase text-slate-400 px-3 py-1.5 tracking-wider">Arrival & Departure Extras</div>
+            <div class="space-y-1">
+              <a href="/services/vip-fast-track" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Fast-Track & Ahlan</div>
+                  <div class="text-[10px] text-slate-400">Skip Immigration Queues</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">$45</span>
+              </a>
+              <a href="/services/child-safety-seats" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Child & Infant Car Seats</div>
+                  <div class="text-[10px] text-slate-400">Certified ISOFIX Safety</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">$10</span>
+              </a>
+              <a href="/services/egypt-tourist-sim" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Egypt Tourist 5G SIM</div>
+                  <div class="text-[10px] text-slate-400">30GB Data on Arrival</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">$20</span>
+              </a>
+              <a href="/services/cairo-airport-lounges" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                <div>
+                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Executive Lounge</div>
+                  <div class="text-[10px] text-slate-400">Buffet, Wi-Fi & Showers</div>
+                </div>
+                <span class="text-xs font-black text-amber-500">$38</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
         <!-- How it Works -->
         <a href="/how-it-works" class="hover:text-amber-500 transition">How It Works</a>
@@ -154,18 +247,8 @@ import { airportGuides } from '../data/airports';
       <!-- Right Action CTA -->
       <div class="hidden sm:flex items-center gap-3">
         <a 
-          href="https://wa.me/201090008888" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="px-4 py-2.5 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition flex items-center gap-1.5"
-        >
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>WhatsApp 24/7</span>
-        </a>
-
-        <a 
           href="/transfers" 
-          class="px-5 py-2.5 text-xs font-black text-slate-950 bg-amber-400 hover:bg-amber-500 rounded-xl transition shadow-sm hover:shadow flex items-center gap-1.5"
+          class="px-6 py-2.5 text-xs font-black text-slate-950 bg-amber-400 hover:bg-amber-500 rounded-xl transition shadow-sm hover:shadow flex items-center gap-1.5"
         >
           <span>Book Transfer</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,9 +275,25 @@ import { airportGuides } from '../data/airports';
   <!-- Mobile Dropdown Menu -->
   <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
     <div class="space-y-1">
-      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Commercial Hubs</div>
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Vehicle Fleet & Categories</div>
+      <a href="/fleet" class="block py-1.5 px-3 text-xs font-bold text-slate-900 hover:bg-amber-50 rounded-xl">All Fleet & Luggage Guide</a>
+      <a href="/fleet/private-taxi" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚕 Private Taxi (From $24)</a>
+      <a href="/fleet/private-minivan" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚐 Private Minivan (From $38)</a>
+      <a href="/fleet/executive-vip" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⭐ Executive / VIP (From $65)</a>
+      <a href="/fleet/airport-minibus" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚌 Airport Shuttle & Minibus (From $95)</a>
+    </div>
+
+    <div class="space-y-1 pt-2 border-t border-slate-100">
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Airport Extras & VIP Services</div>
+      <a href="/services/vip-fast-track" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⚡ VIP Fast-Track & Ahlan ($45)</a>
+      <a href="/services/child-safety-seats" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">👶 Child & Infant Car Seats ($10)</a>
+      <a href="/services/egypt-tourist-sim" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">📱 Egypt Tourist 5G SIM ($20)</a>
+      <a href="/services/cairo-airport-lounges" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🛋️ VIP Executive Lounge Pass ($38)</a>
+    </div>
+
+    <div class="space-y-1 pt-2 border-t border-slate-100">
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Destinations</div>
       <a href="/transfers" class="block py-2 px-3 text-sm font-bold text-slate-900 hover:bg-amber-50 rounded-xl">All Destinations & Routes</a>
-      <a href="/fleet" class="block py-2 px-3 text-sm font-bold text-slate-900 hover:bg-amber-50 rounded-xl">Vehicle Fleet & Luggage Guide</a>
     </div>
 
     <div class="space-y-1 pt-2 border-t border-slate-100">
@@ -216,7 +315,7 @@ import { airportGuides } from '../data/airports';
 
     <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
       <a href="/transfers" class="w-full text-center py-3 text-sm font-black text-slate-950 bg-amber-400 rounded-xl">Book Transfer Now</a>
-      <a href="https://wa.me/201090008888" target="_blank" class="w-full text-center py-3 text-sm font-bold text-emerald-700 bg-emerald-50 rounded-xl">Chat on WhatsApp</a>
+      <a href="https://wa.me/201094066018" target="_blank" class="w-full text-center py-3 text-sm font-bold text-emerald-700 bg-emerald-50 rounded-xl">Chat on WhatsApp</a>
     </div>
   </div>
 </header>

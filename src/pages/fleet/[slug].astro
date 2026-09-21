@@ -1,0 +1,600 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookingSearchWidget from '../../components/BookingSearchWidget.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { fleetVehicles, type FleetVehicle } from '../../data/fleet';
+
+export async function getStaticPaths() {
+  return fleetVehicles.map((vehicle) => ({
+    params: { slug: vehicle.slug },
+    props: { vehicle },
+  }));
+}
+
+interface Props {
+  vehicle: FleetVehicle;
+}
+
+const { vehicle } = Astro.props;
+
+const siteUrl = "https://cairoairportlimousines.com";
+const pageUrl = `${siteUrl}/fleet/${vehicle.slug}/`;
+
+const otherVehicles = fleetVehicles.filter(v => v.slug !== vehicle.slug);
+
+const vehicleSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${vehicle.name} - Cairo Airport Transfer`,
+    "image": `${siteUrl}${vehicle.image}`,
+    "description": vehicle.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "Cairo Airport Limousine"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": `${vehicle.samplePriceCairo}`,
+      "highPrice": `${vehicle.samplePriceAlexandria}`,
+      "offerCount": `${vehicle.rates.length}`,
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "@id": `${pageUrl}#service`,
+    "name": vehicle.title,
+    "serviceType": "Airport Chauffeur Transfer",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Cairo Airport Limousine",
+      "image": `${siteUrl}/images/hero-banner.jpg`,
+      "telephone": "+201094066018",
+      "url": `${siteUrl}/`
+    },
+    "areaServed": "Cairo International Airport (CAI)"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Fleet",
+        "item": `${siteUrl}/fleet/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": vehicle.title,
+        "item": pageUrl
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": vehicle.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  }
+];
+
+const encodedWhatsappMessage = encodeURIComponent(
+  `Hi Cairo Airport Transfers, I am interested in booking the "${vehicle.title}" class for my transfer. Please let me know the availability and confirmation details.`
+);
+---
+
+<Layout 
+  title={`${vehicle.title} Transfer Cairo Airport | Fixed Rates & Models`}
+  description={`Book private ${vehicle.title} transfers at Cairo Airport (CAI). ${vehicle.models[0]} or similar. Fixed rates from $${vehicle.samplePriceCairo}, driver meets outside.`}
+  canonicalUrl={pageUrl}
+  ogImage={vehicle.image}
+  schema={vehicleSchemas}
+  preloadImage={vehicle.image}
+>
+  <Header />
+
+  <main class="bg-white">
+    <!-- Hero Section -->
+    <section class="relative bg-slate-950 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <!-- Ambient light effect -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/2 -right-24 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto space-y-6 relative z-10">
+        <!-- Breadcrumbs Navigation -->
+        <nav class="flex items-center text-xs font-semibold text-slate-400 space-x-2" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-amber-400 transition">Home</a>
+          <span>/</span>
+          <a href="/fleet" class="hover:text-amber-400 transition">Fleet</a>
+          <span>/</span>
+          <span class="text-white font-bold">{vehicle.title}</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <!-- Left Text Details -->
+          <div class="lg:col-span-6 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider border border-amber-400/30">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              {vehicle.tag}
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+              Cairo Airport {vehicle.title}
+            </h1>
+
+            <p class="text-slate-300 text-base leading-relaxed">
+              {vehicle.fullDescription}
+            </p>
+
+            <!-- Quick Specs Pills -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl flex items-center gap-3">
+                <span class="text-xl">👥</span>
+                <div>
+                  <div class="text-[10px] text-slate-400 uppercase font-bold">Max Passengers</div>
+                  <div class="text-sm font-black text-white">{vehicle.maxPax} Persons</div>
+                </div>
+              </div>
+
+              <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl flex items-center gap-3">
+                <span class="text-xl">🧳</span>
+                <div>
+                  <div class="text-[10px] text-slate-400 uppercase font-bold">Luggage Hold</div>
+                  <div class="text-sm font-black text-white">{vehicle.maxLuggageLarge} Suitcases</div>
+                </div>
+              </div>
+
+              <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl flex items-center gap-3 col-span-2 sm:col-span-1">
+                <span class="text-xl">💵</span>
+                <div>
+                  <div class="text-[10px] text-slate-400 uppercase font-bold">Starting Fare</div>
+                  <div class="text-sm font-black text-amber-400">${vehicle.samplePriceCairo} USD</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-4 flex flex-wrap items-center gap-4">
+              <a 
+                href="#booking-widget" 
+                class="px-6 py-3.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5 inline-flex items-center gap-2"
+              >
+                <span>Book This Class Now</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+
+              <a 
+                href={`https://wa.me/201094066018?text=${encodedWhatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-5 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm rounded-xl shadow-md transition inline-flex items-center gap-2"
+              >
+                <span>💬 WhatsApp Quick Book</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Studio Car Image -->
+          <div class="lg:col-span-6">
+            <div class="relative rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-4 sm:p-8 border border-white/10 shadow-2xl backdrop-blur-sm group">
+              <img 
+                src={vehicle.image} 
+                alt={vehicle.alt}
+                title={vehicle.alt}
+                width="800"
+                height="500"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                class="w-full h-auto object-contain rounded-2xl drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="mt-4 flex items-center justify-between text-xs text-slate-400 px-2">
+                <span>✓ Late-Model Year Vehicles</span>
+                <span>✓ High-Performance Air Conditioning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands & Models Breakdown Section -->
+    <section class="py-16 bg-slate-50 border-b border-slate-200/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            FLEET TRANSPARENCY
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Which Cars Might You Get in this Category?
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2">
+            Just like international transfer platforms such as KiwiTaxi, Mozio, and GetTransfer, bookings are made by <strong>vehicle class</strong> rather than individual license plates. You are guaranteed one of the following premium, well-maintained models (or equivalent grade):
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {vehicle.modelBrands.map((item) => (
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-amber-400 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 text-[11px] font-black rounded-lg">
+                    {item.brand}
+                  </span>
+                  <span class="text-xs font-semibold text-slate-400">
+                    {item.year}
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">
+                  {item.model}
+                </h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  {item.note}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-emerald-600 text-xs font-bold">
+                <span>✓</span>
+                <span>Guaranteed Inspected & A/C</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Luggage & Passenger Capacity Guide -->
+    <section class="py-16 bg-white border-b border-slate-200/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block">
+              BAGGAGE & CAPACITY SPECIFICATIONS
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Luggage Allowance & Seating Guide
+            </h2>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              We ensure our clients have plenty of space for a comfortable, stress-free journey. Squeezing excess luggage onto passenger seats is unsafe and prohibited.
+            </p>
+            <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-900 text-xs leading-relaxed">
+              <strong>Need extra baggage capacity?</strong> If you are traveling with more than {vehicle.maxLuggageLarge} large suitcases or bulky items like golf clubs or folding wheelchairs, we advise selecting our <strong>Private Minivan</strong>.
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Checked Luggage -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:shadow-md hover:border-slate-300 transition group flex flex-col justify-between">
+              <div>
+                <div class="h-32 w-full flex items-center justify-center mb-3 overflow-hidden rounded-xl bg-white border border-slate-100 p-2 shadow-xs">
+                  <img 
+                    src="/images/luggage/checked-suitcase.webp" 
+                    alt="Cairo Airport Checked Luggage Allowance - 28-inch Hard-Shell Suitcase" 
+                    title="Checked Luggage (28 inch / 70cm)"
+                    width="400"
+                    height="300"
+                    loading="lazy" 
+                    decoding="async"
+                    class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm" 
+                  />
+                </div>
+                <h3 class="text-sm font-extrabold text-slate-900 mb-1 flex items-center justify-between">
+                  <span>Checked Luggage (28" / 70cm)</span>
+                  <span class="text-[10px] font-bold uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Standard</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">{vehicle.luggageGuide.checkedBags}</p>
+              </div>
+            </div>
+
+            <!-- Cabin Carry-On -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:shadow-md hover:border-slate-300 transition group flex flex-col justify-between">
+              <div>
+                <div class="h-32 w-full flex items-center justify-center mb-3 overflow-hidden rounded-xl bg-white border border-slate-100 p-2 shadow-xs">
+                  <img 
+                    src="/images/luggage/cabin-carryon.webp" 
+                    alt="Cairo Airport Cabin Bags and Carry-On Baggage Trolley" 
+                    title="Cabin Carry-On Bags (20-22 inch)"
+                    width="400"
+                    height="300"
+                    loading="lazy" 
+                    decoding="async"
+                    class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm" 
+                  />
+                </div>
+                <h3 class="text-sm font-extrabold text-slate-900 mb-1 flex items-center justify-between">
+                  <span>Cabin Bags & Carry-Ons</span>
+                  <span class="text-[10px] font-bold uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Handbag</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">{vehicle.luggageGuide.handLuggage}</p>
+              </div>
+            </div>
+
+            <!-- Strollers & Baby Gear -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:shadow-md hover:border-slate-300 transition group flex flex-col justify-between">
+              <div>
+                <div class="h-32 w-full flex items-center justify-center mb-3 overflow-hidden rounded-xl bg-white border border-slate-100 p-2 shadow-xs">
+                  <img 
+                    src="/images/luggage/child-seat-stroller.webp" 
+                    alt="Cairo Airport Child Seat and Baby Stroller Allowance" 
+                    title="Baby Strollers and ISOFIX Child Car Seats"
+                    width="400"
+                    height="300"
+                    loading="lazy" 
+                    decoding="async"
+                    class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm" 
+                  />
+                </div>
+                <h3 class="text-sm font-extrabold text-slate-900 mb-1 flex items-center justify-between">
+                  <span>Strollers & Baby Gear</span>
+                  <span class="text-[10px] font-bold uppercase text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Family</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">{vehicle.luggageGuide.stroller}</p>
+              </div>
+            </div>
+
+            <!-- Special & Sports Gear -->
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:shadow-md hover:border-slate-300 transition group flex flex-col justify-between">
+              <div>
+                <div class="h-32 w-full flex items-center justify-center mb-3 overflow-hidden rounded-xl bg-white border border-slate-100 p-2 shadow-xs">
+                  <img 
+                    src="/images/luggage/sports-golf-bag.webp" 
+                    alt="Cairo Airport Golf Bag, Sports Equipment, and Wheelchair Allowance" 
+                    title="Sports Bags and Mobility Equipment"
+                    width="400"
+                    height="300"
+                    loading="lazy" 
+                    decoding="async"
+                    class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm" 
+                  />
+                </div>
+                <h3 class="text-sm font-extrabold text-slate-900 mb-1 flex items-center justify-between">
+                  <span>Special & Sports Gear</span>
+                  <span class="text-[10px] font-bold uppercase text-amber-600 bg-amber-50 px-2 py-0.5 rounded">Oversized</span>
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">{vehicle.luggageGuide.specialBaggage}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Rate Card Table -->
+    <section class="py-16 bg-slate-50 border-b border-slate-200/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            TRANSPARENT RATES
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Fixed Fares for {vehicle.title}
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            All rates are per vehicle in USD. Includes airport gate tickets, highway tolls, and chauffeur service.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto bg-white rounded-2xl border border-slate-200 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-900 text-white text-[11px] uppercase tracking-wider">
+              <tr>
+                <th class="p-4">Destination from Cairo Airport</th>
+                <th class="p-4">Est. Distance</th>
+                <th class="p-4">Typical Drive Time</th>
+                <th class="p-4">Fixed Rate (Per Car)</th>
+                <th class="p-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+              {vehicle.rates.map((rate) => (
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="p-4 font-bold text-slate-900 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    {rate.destination}
+                  </td>
+                  <td class="p-4 text-slate-500">{rate.distance}</td>
+                  <td class="p-4 text-slate-500">{rate.time}</td>
+                  <td class="p-4 font-black text-slate-900 text-base sm:text-lg">${rate.priceUSD} USD</td>
+                  <td class="p-4 text-right">
+                    <a 
+                      href="#booking-widget" 
+                      class="inline-block px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-sm transition"
+                    >
+                      Book Now
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Included Amenities & VIP Perks -->
+    <section class="py-16 bg-white border-b border-slate-200/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="text-center max-w-2xl mx-auto">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            PREMIUM EXPERIENCE
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            What's Included in Every Booking
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">✈️</div>
+            <h3 class="text-base font-bold text-slate-900">Live Flight Radar Monitoring</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              We monitor your flight in real time. If your arrival is delayed, your pickup schedule shifts automatically at no extra charge.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">🪧</div>
+            <h3 class="text-base font-bold text-slate-900">Meet Outside with Name Sign</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Your driver waits right outside the arrival terminal exit holding a distinct nameboard with your name, ready to assist with your luggage directly to the car.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">⏳</div>
+            <h3 class="text-base font-bold text-slate-900">60 Minutes Free Wait Time</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Take your time passing through Cairo customs and baggage claim. We include a full hour of complimentary waiting from actual touchdown.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">💧</div>
+            <h3 class="text-base font-bold text-slate-900">Complimentary Cold Water</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Refresh after your flight with bottled mineral water placed in each vehicle upon boarding.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">❄️</div>
+            <h3 class="text-base font-bold text-slate-900">Guaranteed Powerful A/C</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Egypt gets warm. Every vehicle is inspected to ensure high-output climate control throughout the trip.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">🛡️</div>
+            <h3 class="text-base font-bold text-slate-900">Zero Hidden Tolls or Fees</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Your price includes airport parking gates, express highway tolls, luggage handling, and local taxes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Booking Widget Section -->
+    <section id="booking-widget" class="py-16 bg-slate-950 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="text-xs font-black tracking-widest text-amber-400 uppercase block">
+          INSTANT RESERVATION
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold">
+          Book Your {vehicle.title} Transfer
+        </h2>
+        <p class="text-slate-300 text-sm max-w-xl mx-auto">
+          Choose your pickup and drop-off destinations to finalize your booking with instant confirmation.
+        </p>
+        <div class="pt-2 text-left">
+          <BookingSearchWidget />
+        </div>
+      </div>
+    </section>
+
+    <!-- Category FAQs -->
+    <section class="py-16 md:py-24 bg-white border-b border-slate-200/80">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+            FREQUENTLY ASKED QUESTIONS
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Common Questions About {vehicle.title}
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {vehicle.faqs.map((faq) => (
+            <details class="group bg-slate-50 rounded-2xl border border-slate-200 p-6 open:bg-white open:border-amber-400 open:shadow-md transition">
+              <summary class="font-bold text-slate-900 text-base cursor-pointer list-none flex items-center justify-between">
+                <span>{faq.q}</span>
+                <span class="text-amber-500 font-bold group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                {faq.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Other Fleet Options -->
+    <section class="py-16 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-black tracking-widest text-indigo-600 uppercase block mb-1">
+              OTHER VEHICLE CLASSES
+            </span>
+            <h2 class="text-2xl font-black text-slate-900">
+              Need a Different Capacity or Style?
+            </h2>
+          </div>
+          <a href="/fleet" class="text-xs font-bold text-indigo-600 hover:underline">
+            View All Fleet Categories & Capacities →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {otherVehicles.map((other) => (
+            <a 
+              href={`/fleet/${other.slug}`}
+              class="group bg-white rounded-2xl p-5 border border-slate-200 hover:shadow-lg hover:border-slate-300 transition flex flex-col justify-between"
+            >
+              <div>
+                <div class="relative h-40 w-full overflow-hidden rounded-xl bg-slate-50 flex items-center justify-center p-2 mb-4">
+                  <img 
+                    src={other.image} 
+                    alt={other.alt}
+                    title={other.alt}
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                  />
+                  <span class="absolute top-2 right-2 px-2 py-0.5 bg-amber-400 text-slate-950 font-black text-[10px] uppercase rounded-md shadow-sm">
+                    {other.tag}
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">
+                  {other.title}
+                </h3>
+                <p class="text-xs text-slate-500 mt-1">
+                  {other.capacity}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs font-black text-slate-900">From ${other.samplePriceCairo} USD</span>
+                <span class="text-xs font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">Details →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>
