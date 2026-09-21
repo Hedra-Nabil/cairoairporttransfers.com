@@ -9,7 +9,7 @@ import { transferRoutes } from '../../data/routes';
 
 const pageTitle = "Cairo Airport Transfers Catalog | All Destinations & Rates";
 const pageDesc = "Explore all private airport transfer routes from Cairo International Airport (CAI). Compare fixed prices, travel times, and book direct hotel transfers.";
-const canonicalUrl = "https://cairoairporttransfers.com/transfers";
+const canonicalUrl = "https://cairoairportlimousines.com/transfers/";
 
 // Group routes by region
 const cairoRoutes = transferRoutes.filter(r => ["cairo-airport-to-downtown-cairo", "cairo-airport-to-zamalek", "cairo-airport-to-heliopolis"].includes(r.slug));
@@ -24,7 +24,7 @@ const catalogSchema = {
   "itemListElement": transferRoutes.map((route, index) => ({
     "@type": "ListItem",
     "position": index + 1,
-    "url": `https://cairoairporttransfers.com/transfers/${route.slug}`,
+    "url": `https://cairoairportlimousines.com/transfers/${route.slug}/`,
     "name": route.heroHeadline
   }))
 };

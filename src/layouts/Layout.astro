@@ -3,32 +3,53 @@ interface Props {
   title?: string;
   description?: string;
   canonicalUrl?: string;
+  keywords?: string;
   ogImage?: string;
   type?: string;
   schema?: Record<string, any> | Record<string, any>[];
 }
 
 const {
-  title = "Cairo Airport Transfers | Private Taxi & Chauffeur to Hotels",
-  description = "Book reliable, fixed-price Cairo airport transfers (CAI). Terminal 1, 2 & 3 Meet & Greet, free flight delay tracking, AC fleet & 24/7 support. No taxi haggling.",
+  title = "Book Cairo Airport Private Transfers & Limousine | CAI",
+  description = "Book Cairo airport private transfers & luxury limousine to Giza Pyramids or Downtown. 100% fixed rates, inside Meet & Greet & 24/7 dispatch support.",
   canonicalUrl,
+  keywords = "Cairo airport private transfers, Cairo airport private limousine, Cairo airport transfers, Cairo airport limousine, Private Cairo airport transfers, Cairo international airport transfers, Transfer from Cairo airport, Cairo airport taxi, Egypt airports, book Cairo airport transfer, reserve Cairo airport limousine",
   ogImage = "/images/hero-banner.jpg",
   type = "website",
   schema
 } = Astro.props;
 
 // Canonical URL generation
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://cairoairporttransfers.com';
-const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://cairoairportlimousines.com';
+let canonical = canonicalUrl || new URL(Astro.url.pathname, `${siteUrl}/`).href;
+if (!canonical.endsWith('/')) {
+  canonical = `${canonical}/`;
+}
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
-// Default Sitewide TaxiService / Organization Schema
+// Default Sitewide TaxiService & LimousineService Schema
 const defaultSchema = {
   "@context": "https://schema.org",
-  "@type": "TaxiService",
+  "@type": ["TaxiService", "LimousineService"],
   "@id": `${siteUrl}/#service`,
-  "name": "Cairo Airport Transfers",
-  "url": siteUrl,
+  "name": "Cairo Airport Transfers & Limousine",
+  "alternateName": [
+    "Cairo Airport Private Transfers",
+    "Cairo Airport Private Limousine",
+    "Cairo Airport Transfers",
+    "Cairo Airport Limousine",
+    "Private Cairo Airport Transfers",
+    "Cairo International Airport Transfers",
+    "Transfer from Cairo Airport"
+  ],
+  "serviceType": [
+    "Cairo Airport Private Transfers",
+    "Cairo Airport Private Limousine",
+    "Cairo Airport Transfers",
+    "Cairo Airport Limousine",
+    "Private Airport Chauffeur Service"
+  ],
+  "url": `${siteUrl}/`,
   "logo": `${siteUrl}/images/logo/logo-brand.png`,
   "image": `${siteUrl}/images/hero-banner.jpg`,
   "telephone": "+201090008888",
@@ -42,6 +63,44 @@ const defaultSchema = {
     { "@type": "AdministrativeArea", "name": "Giza" },
     { "@type": "AdministrativeArea", "name": "Alexandria" }
   ],
+  "description": "Official Cairo airport private transfers and luxury limousine service. Direct hotel pickup, inside terminal Meet & Greet, fixed transparent pricing, and 24/7 dispatch.",
+  "keywords": "Cairo airport private transfers, Cairo airport private limousine, Cairo airport transfers, Cairo airport limousine, Private Cairo airport transfers",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Cairo Airport Transfer & Limousine Services",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Airport Transfer Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cairo Airport Private Transfers",
+              "description": "Direct private airport taxi transfer from CAI terminals to hotels"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cairo Airport Private Limousine",
+              "description": "Chauffeur-driven executive VIP limousine from Cairo Airport"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cairo International Airport Transfers",
+              "description": "Fixed-rate door-to-door passenger shuttles across Cairo and Giza"
+            }
+          }
+        ]
+      }
+    ]
+  },
   "provider": {
     "@type": "LocalBusiness",
     "name": "Cairo Airport Transfers Dispatch Co.",
@@ -65,6 +124,8 @@ const defaultSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonical} />
 
     <!-- Favicons -->

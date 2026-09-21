@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://cairoairporttransfers.com/sitemap-index.xml
+Sitemap: https://cairoairportlimousines.com/sitemap-index.xml

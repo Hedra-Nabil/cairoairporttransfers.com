@@ -10,46 +10,12 @@ import PreFooterCTA from '../components/PreFooterCTA.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
-const siteUrl = "https://cairoairporttransfers.com";
-const pageTitle = "Book & Reserve Cairo Airport Private Transfers & Limousine | CAI";
-const pageDesc = "Book & reserve Cairo airport private transfers & luxury limousine to Giza Pyramids or Downtown. Fixed transparent rates, inside Meet & Greet & 24/7 dispatch.";
+const siteUrl = "https://cairoairportlimousines.com";
+const pageTitle = "Book Cairo Airport Private Transfers & Limousine | CAI";
+const pageDesc = "Book Cairo airport private transfers & luxury limousine to Giza Pyramids or Downtown. 100% fixed rates, inside Meet & Greet & 24/7 dispatch support.";
 
-// Rich JSON-LD Schemas (TaxiService, BreadcrumbList, FAQPage)
+// Rich JSON-LD Schemas (BreadcrumbList & FAQPage; TaxiService & LimousineService master schema injected via Layout)
 const homeSchemas = [
-  {
-    "@context": "https://schema.org",
-    "@type": "TaxiService",
-    "@id": `${siteUrl}/#service`,
-    "name": "Cairo Airport Transfers",
-    "serviceType": "Airport Transfer & Limousine Service",
-    "url": siteUrl,
-    "logo": `${siteUrl}/images/logo/logo-brand.png`,
-    "image": `${siteUrl}/images/hero-banner.jpg`,
-    "telephone": "+201090008888",
-    "priceRange": "$$",
-    "currenciesAccepted": "USD, EUR, GBP, EGP",
-    "paymentAccepted": "Credit Card, Debit Card, Apple Pay, Cash",
-    "areaServed": [
-      { "@type": "Airport", "name": "Cairo International Airport", "iataCode": "CAI" },
-      { "@type": "Airport", "name": "Sphinx International Airport", "iataCode": "SPX" },
-      { "@type": "AdministrativeArea", "name": "Cairo" },
-      { "@type": "AdministrativeArea", "name": "Giza" },
-      { "@type": "AdministrativeArea", "name": "Alexandria" }
-    ],
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Cairo Airport Transfers Dispatch Co.",
-      "telephone": "+201090008888",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Cairo International Airport Terminal 3 Access Rd",
-        "addressLocality": "Heliopolis",
-        "addressRegion": "Cairo",
-        "postalCode": "11776",
-        "addressCountry": "EG"
-      }
-    }
-  },
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -58,7 +24,7 @@ const homeSchemas = [
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": siteUrl
+        "item": `${siteUrl}/`
       }
     ]
   },
@@ -114,7 +80,7 @@ const homeSchemas = [
 <Layout 
   title={pageTitle}
   description={pageDesc}
-  canonicalUrl={siteUrl}
+  canonicalUrl={`${siteUrl}/`}
   schema={homeSchemas}
 >
   <!-- Global Navigation Header -->
