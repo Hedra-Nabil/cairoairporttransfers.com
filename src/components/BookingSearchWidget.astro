@@ -4,6 +4,7 @@ interface Props {
   pickup?: string;
   language?: string;
   targetId?: string;
+  surface?: "light" | "transparent";
   defaultDropoff?: string;
   customActionUrl?: string;
   isStandalone?: boolean;
@@ -12,7 +13,8 @@ interface Props {
 const { 
   pickup = "Cairo International Airport",
   language = "en",
-  targetId = "egyptlimo-booking"
+  targetId = "egyptlimo-booking",
+  surface
 } = Astro.props;
 ---
 
@@ -22,5 +24,6 @@ const {
   data-target={targetId}
   data-language={language}
   data-pickup={pickup}
+  {...(surface ? { "data-surface": surface } : {})}
   defer
 ></script>
