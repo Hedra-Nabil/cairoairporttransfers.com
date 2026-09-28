@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import BookingSearchWidget from '../../components/BookingSearchWidget.astro';
 import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
 import { transferRoutes, type TransferRouteData } from '../../data/routes';
+import { getRoutePrice } from '../../utils/prices';
 
 export async function getStaticPaths() {
   return transferRoutes.map((route) => ({
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const { route } = Astro.props;
+const cachedPricing = getRoutePrice(route.slug, route.startingPriceUSD);
 
 const siteUrl = "https://cairoairportlimousines.com";
 const pageUrl = `${siteUrl}/transfers/${route.slug}/`;
@@ -305,8 +307,14 @@ const routeSchemas = [
                 Book
               </a>
             </div>
-          </div>
+        </div>
 
+        <!-- Weekly Price Feed Indicative Notice -->
+        <div class="mt-8 text-center text-xs text-slate-500 bg-slate-50 border border-slate-200/80 rounded-xl py-3 px-4 max-w-2xl mx-auto flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{cachedPricing.disclaimer}</span>
         </div>
       </div>
     </section>

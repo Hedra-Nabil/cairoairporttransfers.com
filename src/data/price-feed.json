@@ -1,0 +1,95 @@
+{
+  "currency": "USD",
+  "last_updated": "2026-09-28T02:00:00Z",
+  "disclaimer": "Prices are indicative and checked weekly. Final price confirmed during booking.",
+  "routes": {
+    "cairo-airport-to-giza-pyramids": {
+      "starting_price": 32,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 32.0, "estimated_duration_mins": 60 },
+        { "vehicle_class": "Minivan", "price": 48.0, "estimated_duration_mins": 60 },
+        { "vehicle_class": "Executive", "price": 75.0, "estimated_duration_mins": 60 },
+        { "vehicle_class": "Minibus", "price": 110.0, "estimated_duration_mins": 60 }
+      ]
+    },
+    "cairo-airport-to-downtown-cairo": {
+      "starting_price": 24,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 24.0, "estimated_duration_mins": 45 },
+        { "vehicle_class": "Minivan", "price": 38.0, "estimated_duration_mins": 45 },
+        { "vehicle_class": "Executive", "price": 65.0, "estimated_duration_mins": 45 },
+        { "vehicle_class": "Minibus", "price": 95.0, "estimated_duration_mins": 45 }
+      ]
+    },
+    "cairo-airport-to-new-cairo": {
+      "starting_price": 22,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 22.0, "estimated_duration_mins": 25 },
+        { "vehicle_class": "Minivan", "price": 34.0, "estimated_duration_mins": 25 },
+        { "vehicle_class": "Executive", "price": 60.0, "estimated_duration_mins": 25 },
+        { "vehicle_class": "Minibus", "price": 85.0, "estimated_duration_mins": 25 }
+      ]
+    },
+    "cairo-airport-to-alexandria": {
+      "starting_price": 89,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 89.0, "estimated_duration_mins": 165 },
+        { "vehicle_class": "Minivan", "price": 129.0, "estimated_duration_mins": 165 },
+        { "vehicle_class": "Executive", "price": 195.0, "estimated_duration_mins": 165 },
+        { "vehicle_class": "Minibus", "price": 240.0, "estimated_duration_mins": 165 }
+      ]
+    },
+    "cairo-airport-to-zamalek": {
+      "starting_price": 26,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 26.0, "estimated_duration_mins": 50 },
+        { "vehicle_class": "Minivan", "price": 40.0, "estimated_duration_mins": 50 },
+        { "vehicle_class": "Executive", "price": 70.0, "estimated_duration_mins": 50 },
+        { "vehicle_class": "Minibus", "price": 100.0, "estimated_duration_mins": 50 }
+      ]
+    },
+    "cairo-airport-to-heliopolis": {
+      "starting_price": 18,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 18.0, "estimated_duration_mins": 15 },
+        { "vehicle_class": "Minivan", "price": 28.0, "estimated_duration_mins": 15 },
+        { "vehicle_class": "Executive", "price": 50.0, "estimated_duration_mins": 15 },
+        { "vehicle_class": "Minibus", "price": 75.0, "estimated_duration_mins": 15 }
+      ]
+    },
+    "cairo-airport-to-ain-sokhna": {
+      "starting_price": 75,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 75.0, "estimated_duration_mins": 105 },
+        { "vehicle_class": "Minivan", "price": 110.0, "estimated_duration_mins": 105 },
+        { "vehicle_class": "Executive", "price": 165.0, "estimated_duration_mins": 105 },
+        { "vehicle_class": "Minibus", "price": 210.0, "estimated_duration_mins": 105 }
+      ]
+    },
+    "cairo-airport-to-hurghada": {
+      "starting_price": 180,
+      "currency": "USD",
+      "updated_at": "2026-09-28T02:00:00Z",
+      "options": [
+        { "vehicle_class": "Sedan", "price": 180.0, "estimated_duration_mins": 300 },
+        { "vehicle_class": "Minivan", "price": 250.0, "estimated_duration_mins": 300 },
+        { "vehicle_class": "Executive", "price": 340.0, "estimated_duration_mins": 300 },
+        { "vehicle_class": "Minibus", "price": 420.0, "estimated_duration_mins": 300 }
+      ]
+    }
+  }
+}
