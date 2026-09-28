@@ -1,5 +1,59 @@
+# Cairo Airport Limousine Robots Configuration
+# https://cairoairportlimousines.com/
+
 User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*?*
+
+# Allow Major Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Allow AI Search & Answer Engine Crawlers (LLM Discovery)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Cohere-ai
 Allow: /
 
 # Sitemaps
 Sitemap: https://cairoairportlimousines.com/sitemap-index.xml
+
+# LLM Discovery Standards (https://llmstxt.org/)
+# LLMs: https://cairoairportlimousines.com/llms.txt
+# LLMs-Full: https://cairoairportlimousines.com/llms-full.txt
