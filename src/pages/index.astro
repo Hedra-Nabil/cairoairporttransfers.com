@@ -5,6 +5,10 @@ import Hero from '../components/Hero.astro';
 import PopularTransfers from '../components/PopularTransfers.astro';
 import FleetCategories from '../components/FleetCategories.astro';
 import HowItWorks from '../components/HowItWorks.astro';
+import AirportOverview from '../components/AirportOverview.astro';
+import PickupAndBookingGuides from '../components/PickupAndBookingGuides.astro';
+import ServiceFeatures from '../components/ServiceFeatures.astro';
+import InformationAccordions from '../components/InformationAccordions.astro';
 import FAQSection from '../components/FAQSection.astro';
 import PreFooterCTA from '../components/PreFooterCTA.astro';
 import Footer from '../components/Footer.astro';
@@ -14,7 +18,7 @@ const siteUrl = "https://cairoairportlimousines.com";
 const pageTitle = "Cairo Airport Limousine | Official Airport Transfers & Chauffeur CAI";
 const pageDesc = "Cairo Airport Limousine: Pre-book private airport transfers from CAI directly to your hotel. Enjoy fixed rates, free flight tracking, and 24/7 support.";
 
-// Rich JSON-LD Schemas (BreadcrumbList & FAQPage; TaxiService & LimousineService master schema injected via Layout)
+// Rich JSON-LD Schemas (BreadcrumbList, HowTo & FAQPage; Master TaxiService schema in Layout)
 const homeSchemas = [
   {
     "@context": "https://schema.org",
@@ -30,6 +34,44 @@ const homeSchemas = [
   },
   {
     "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Book Cairo Airport Limousine & Meet Your Chauffeur",
+    "description": "Step-by-step guide to reserving private airport transfers from Cairo International Airport (CAI) and meeting your chauffeur curbside outside the arrivals exit.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Select Vehicle & Destination",
+        "text": "Choose your sedan, family minivan, executive VIP Mercedes, or minibus online, entering your flight number and destination hotel or address in Cairo or Giza."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Live Flight Tracking & Radar Sync",
+        "text": "Our 24/7 CAI flight dispatch monitors your landing time automatically. Driver pickup times synchronize with delays or early arrivals with 60 minutes free wait time."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Clear Immigration & Customs",
+        "text": "Disembark at Terminal 1, 2, or 3, stamp your visa, collect luggage from the baggage carousel, and clear the customs inspection."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Meet Chauffeur Outside Arrivals Exit",
+        "text": "Step outside the glass exit doors where your licensed driver is holding a personalized greeting board with your name."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Door-to-Door Hotel Drop-off",
+        "text": "Relax in air-conditioned comfort as your chauffeur transports you via direct expressways directly to your hotel entrance curbside."
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
@@ -37,7 +79,7 @@ const homeSchemas = [
         "name": "Where will I meet my driver at Cairo International Airport?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Your chauffeur will wait inside the public arrivals hall of your designated arrival terminal (Terminal 1, Terminal 2, or Terminal 3), immediately after you pass through customs and baggage claim. They will hold an official greeting sign clearly displaying your name."
+          "text": "Your chauffeur will wait outside the arrival exit doors of your designated terminal (Terminal 1, Terminal 2, or Terminal 3), immediately after you pass through customs and baggage claim. They will hold an official greeting sign clearly displaying your name."
         }
       },
       {
@@ -58,10 +100,10 @@ const homeSchemas = [
       },
       {
         "@type": "Question",
-        "name": "Can my driver assist with getting a local Egyptian SIM card or ATM?",
+        "name": "Can my driver assist with currency exchange or using the airport ATM?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, absolutely! The main arrivals halls have official telecom booths (Vodafone, Orange, e&, WE) and bank ATMs. Your driver will gladly wait for you while you purchase a local SIM card or exchange currency before escorting you to the vehicle."
+          "text": "Yes, absolutely! The arrivals halls have official 24/7 bank branches (National Bank of Egypt, Banque Misr) and ATMs. Your driver will gladly wait for you while you exchange currency or withdraw Egyptian Pounds (EGP) before escorting you to your vehicle."
         }
       },
       {
@@ -91,19 +133,31 @@ const homeSchemas = [
     <!-- 1. Hero Banner with Integrated Search Engine & Consolidated Trust Strip -->
     <Hero />
 
-    <!-- 2. Popular Hotel & City Transfers (Programmatic Routes Linkage) -->
+    <!-- 2. Airport Overview & Terminals Passenger Guide -->
+    <AirportOverview />
+
+    <!-- 3. Popular Hotel & City Transfers (Programmatic Routes Linkage) -->
     <PopularTransfers />
 
-    <!-- 3. Vehicle Classes & Capacities (Fleet Guide) -->
+    <!-- 4. Step-by-Step Terminal Arrival & Booking Guides -->
+    <PickupAndBookingGuides />
+
+    <!-- 5. Vehicle Classes & Capacities (Fleet Guide) -->
     <FleetCategories />
 
-    <!-- 4. How Your Airport Pickup Works (3 Simple Steps) -->
+    <!-- 6. Service Guarantees & Features Checklist -->
+    <ServiceFeatures />
+
+    <!-- 7. How Your Airport Pickup Works (3 Simple Steps) -->
     <HowItWorks />
 
-    <!-- 5. Frequently Asked Questions (Structured FAQ Accordion) -->
+    <!-- 8. Informational Accordions (Baggage Guidelines, Terminal Meeting Points, Departure Times) -->
+    <InformationAccordions />
+
+    <!-- 9. Frequently Asked Questions (Structured FAQ Accordion) -->
     <FAQSection />
 
-    <!-- 6. Pre-Footer Call to Action Banner -->
+    <!-- 10. Pre-Footer Call to Action Banner -->
     <PreFooterCTA />
   </main>
 

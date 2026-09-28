@@ -19,8 +19,8 @@ const routes: TransferRoute[] = [
   {
     id: "downtown",
     slug: "cairo-airport-to-downtown-cairo",
-    name: "Cairo City Centre",
-    destination: "Downtown Cairo / Tahrir Square / Zamalek",
+    name: "Downtown Cairo & Tahrir",
+    destination: "Tahrir Square, The Nile Ritz-Carlton, Garden City",
     badge: "MOST POPULAR",
     duration: "35 - 45 mins",
     distance: "21 km",
@@ -34,8 +34,8 @@ const routes: TransferRoute[] = [
   {
     id: "giza",
     slug: "cairo-airport-to-giza-pyramids",
-    name: "Giza Pyramids Area",
-    destination: "Mena House, Giza Plateau & Sphinx Hotels",
+    name: "Giza Pyramids & GEM",
+    destination: "Marriott Mena House, Giza Plateau, Hyatt West",
     badge: "TOP SIGHT",
     duration: "50 - 65 mins",
     distance: "38 km",
@@ -49,8 +49,8 @@ const routes: TransferRoute[] = [
   {
     id: "new-cairo",
     slug: "cairo-airport-to-new-cairo",
-    name: "New Cairo / Tagamoa",
-    destination: "5th Settlement, Dusit Thani, Kempinski",
+    name: "New Cairo (5th Settlement)",
+    destination: "90th Street, Dusit Thani, Kempinski Palace",
     badge: "FAST ROUTE",
     duration: "20 - 30 mins",
     distance: "18 km",
@@ -62,10 +62,40 @@ const routes: TransferRoute[] = [
     image: "/images/cairo-downtown.webp"
   },
   {
+    id: "sheikh-zayed",
+    slug: "cairo-airport-to-sheikh-zayed-6th-october",
+    name: "Sheikh Zayed & 6th October",
+    destination: "Arkan Plaza, Mall of Arabia, Crowne Plaza",
+    badge: "WEST CAIRO",
+    duration: "50 - 70 mins",
+    distance: "52 km",
+    vehicle: "Executive Sedan / Minivan",
+    pax: 3,
+    luggage: 3,
+    price: "35",
+    currency: "$",
+    image: "/images/hero-banner.webp"
+  },
+  {
+    id: "new-capital",
+    slug: "cairo-airport-to-new-administrative-capital",
+    name: "New Administrative Capital",
+    destination: "St. Regis Almasa, Iconic Tower, Ministries",
+    badge: "BUSINESS HUB",
+    duration: "40 - 55 mins",
+    distance: "48 km",
+    vehicle: "VIP Mercedes / Sedan",
+    pax: 3,
+    luggage: 3,
+    price: "34",
+    currency: "$",
+    image: "/images/hero-banner.webp"
+  },
+  {
     id: "alexandria",
     slug: "cairo-airport-to-alexandria",
     name: "Alexandria City & Coast",
-    destination: "Corniche, Mediterranean Hotels & Port",
+    destination: "Four Seasons San Stefano, Corniche, Port",
     badge: "INTERCITY",
     duration: "2.5 - 3 hours",
     distance: "225 km",
@@ -86,13 +116,13 @@ const routes: TransferRoute[] = [
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
       <div>
         <div class="text-xs font-black tracking-widest text-indigo-600 uppercase mb-2">
-          FAVORITE DESTINATIONS
+          FAVORITE CAIRO DESTINATIONS
         </div>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Popular Hotel & City Transfers
+          Popular Cairo Airport Transfers & Limousine Routes
         </h2>
         <p class="text-slate-500 text-sm sm:text-base mt-2 max-w-2xl">
-          Fixed-price private transfers with your driver meeting you outside Terminal 1, 2, or 3 with your name sign.
+          Fixed-price private transfers with your driver meeting you outside Terminal 1, 2, or 3 with your name sign. No meters, no toll extras.
         </p>
       </div>
 
@@ -100,7 +130,7 @@ const routes: TransferRoute[] = [
         href="/transfers" 
         class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition group whitespace-nowrap"
       >
-        <span>View all Cairo routes</span>
+        <span>View all 12 Cairo routes</span>
         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
@@ -108,7 +138,7 @@ const routes: TransferRoute[] = [
     </div>
 
     <!-- Routes Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {routes.map((route) => (
         <div class="bg-white rounded-2xl border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
           
@@ -179,17 +209,21 @@ const routes: TransferRoute[] = [
                 <span class="text-[10px] text-slate-500">/ vehicle</span>
               </div>
 
-              <a 
-                href={`/transfers/${route.slug}`} 
-                class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-sm hover:shadow transition flex items-center gap-1 group/btn"
-              >
-                <span>Book</span>
-                <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </a>
+              <div class="flex items-center gap-2">
+                <a 
+                  href={`/transfers/${route.slug}`} 
+                  class="px-3 py-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition"
+                >
+                  Guide
+                </a>
+                <a 
+                  href="#search-booking" 
+                  class="px-4 py-2 text-xs font-black text-slate-950 bg-amber-400 hover:bg-amber-500 rounded-xl shadow-sm transition transform hover:-translate-y-0.5"
+                >
+                  Book
+                </a>
+              </div>
             </div>
-
           </div>
 
         </div>

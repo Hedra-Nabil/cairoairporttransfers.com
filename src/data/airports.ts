@@ -28,7 +28,7 @@ export const airportGuides: AirportGuideData[] = [
     name: "Cairo International Airport (CAI) - Complete Guide",
     shortTitle: "Cairo Airport (CAI) Overview",
     metaTitle: "Cairo International Airport (CAI) Guide | Terminals & Transfers",
-    metaDescription: "Comprehensive Cairo International Airport guide (CAI). Learn about Terminals 1, 2, and 3, immigration, SIM cards, currency exchange, and private transfers.",
+    metaDescription: "Comprehensive Cairo International Airport guide (CAI). Learn about Terminals 1, 2, and 3, immigration, baggage reclaim, currency exchange, and transfers.",
     badge: "Official Airport Guide",
     headline: "Cairo International Airport (CAI) Passenger & Transfer Guide",
     subheadline: "Everything you need to navigate Egypt's primary aviation gateway: Terminals 1, 2, and 3, arrivals procedures, baggage reclaim, and verified private taxi transfers.",
@@ -43,7 +43,7 @@ export const airportGuides: AirportGuideData[] = [
         "Step outside the arrival terminal exit doors where your designated driver is holding your name board."
       ],
       tips: [
-        "Official SIM card booths (Vodafone, Orange, WE, e&) operate 24/7 inside the arrivals lounges.",
+        "24/7 bank counters and currency exchange booths operate inside all terminal arrivals halls.",
         "Complimentary 60 minutes waiting time begins only from flight landing time.",
         "Free Automated People Mover (APM) train connects Terminal 1, Terminal 2, and Terminal 3."
       ]
@@ -53,8 +53,7 @@ export const airportGuides: AirportGuideData[] = [
       "Saudia", "Qatar Airways", "Turkish Airlines", "Flydubai", "Air Arabia"
     ],
     facilities: [
-      "24/7 Bank ATMs & Currency Exchange",
-      "Official Egyptian Telecom Kiosks (Vodafone / Orange / WE / e&)",
+      "24/7 Bank ATMs & Currency Exchange (NBE / Banque Misr)",
       "Automated People Mover (APM) Inter-terminal Train",
       "Duty-Free Shops (Within 48h of arrival)",
       "Luggage Storage & Wrapping Services",
@@ -72,8 +71,8 @@ export const airportGuides: AirportGuideData[] = [
         a: "The airport is located 21 km northeast of Downtown Cairo (approx. 40 minutes drive) and 38 km from the Giza Pyramids (approx. 50–70 minutes via the Ring Road)."
       },
       {
-        q: "Can I buy a local Egyptian SIM card upon arrival?",
-        a: "Yes, official telecom booths from Vodafone, Orange, WE, and e& are situated right in the arrivals hall after baggage reclaim and remain open 24/7."
+        q: "Can I exchange currency or find an ATM upon arrival?",
+        a: "Yes, official 24/7 bank branches (National Bank of Egypt, Banque Misr) and ATMs are situated right in the arrivals hall before and after customs."
       }
     ]
   },
@@ -109,7 +108,7 @@ export const airportGuides: AirportGuideData[] = [
     facilities: [
       "EgyptAir Alioth & Golden Lounge",
       "Direct pedestrian link to Le Méridien Hotel",
-      "Telecom Kiosks (Vodafone / Orange / WE)",
+      "Executive VIP Meet and Greet Services",
       "24/7 National Bank of Egypt Currency Exchange",
       "Duty Free Arrival Concourse"
     ],

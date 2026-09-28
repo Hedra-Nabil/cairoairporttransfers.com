@@ -28,16 +28,62 @@ const pageUrl = `${siteUrl}/airports/${guide.slug}/`;
 const terminalSchema = [
   {
     "@context": "https://schema.org",
-    "@type": "CivicStructure",
+    "@type": "Airport",
     "@id": `${pageUrl}#airport`,
     "name": guide.name,
+    "alternateName": [guide.shortTitle, "Cairo International Airport", "CAI Airport"],
+    "iataCode": "CAI",
+    "icaoCode": "HECA",
     "url": pageUrl,
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.1219,
+      "longitude": 31.4056
+    },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Cairo",
-      "addressRegion": "Cairo Governorate",
+      "streetAddress": "Cairo International Airport",
+      "addressLocality": "Heliopolis",
+      "addressRegion": "Cairo",
+      "postalCode": "11776",
       "addressCountry": "EG"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to Clear Customs and Meet Your Driver at ${guide.shortTitle}`,
+    "description": `Step-by-step arrivals instructions for landing at ${guide.name} and meeting your private chauffeur at the outside arrivals meeting point.`,
+    "step": guide.meetingPoint.stepByStep.map((stepText, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": `Step ${index + 1}: Arrival Navigation`,
+      "text": stepText
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Airports & Terminals",
+        "item": `${siteUrl}/airports/cairo-international-airport/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": guide.shortTitle,
+        "item": pageUrl
+      }
+    ]
   },
   {
     "@context": "https://schema.org",

@@ -127,60 +127,6 @@ export const ancillaryServices: AncillaryService[] = [
     ]
   },
   {
-    slug: "egypt-tourist-sim",
-    title: "Egypt Tourist 4G/5G SIM & Data Package",
-    arabicTitle: "شريحة إنترنت واتصالات سياحية",
-    tag: "Instant 5G Data",
-    badgeColor: "bg-emerald-600 text-white",
-    priceUSD: 20,
-    priceUnit: "per 30 GB package",
-    image: "/images/ancillaries/egypt-tourist-sim.webp",
-    alt: "Egypt Tourist Prepaid 4G 5G SIM Card and High Speed Mobile Data for Cairo Visitors",
-    shortDescription: "Stay connected from the second you step out of customs. High-speed 30GB / 50GB prepaid data SIM pre-configured and handed directly to you by your driver.",
-    metaDescription: "High-speed 30GB & 50GB Egypt 5G tourist SIM cards delivered by your chauffeur upon Cairo Airport arrival. Instant connectivity from $20 USD.",
-    fullDescription: "Avoid standing in lengthy terminal telecom queues or struggling with passport registration kiosks after your flight. Pre-order an official Egyptian tourist prepaid SIM card with 30 GB or 50 GB high-speed 4G/5G data and local calling credit. Supported by Egypt's top national networks (Vodafone Egypt and Orange), your driver delivers the sealed card with a complimentary SIM ejection tool upon arrival, and assists you in popping it into your smartphone for instant navigation, WhatsApp, and family contact.",
-    benefits: [
-      "Avoid 30-45 minute waiting queues at crowded terminal telecom kiosks",
-      "High-speed 4G / 5G nationwide coverage across Cairo, Giza, Alexandria & Red Sea",
-      "30 GB to 50 GB generous data allowances valid for 30 full days",
-      "Includes local voice minutes to contact hotels, tours, and tour guides",
-      "Compatible with all unlocked iPhones, Android smartphones, and portable hotspots",
-      "Comes complete with metal SIM-tray ejector tool and multi-size adapter"
-    ],
-    howItWorks: [
-      {
-        step: 1,
-        title: "Select Data Size",
-        desc: "Choose between our 30 GB ($20) or 50 GB ($30) tourist bundle when reserving your airport transfer."
-      },
-      {
-        step: 2,
-        title: "Direct Handover",
-        desc: "Your chauffeur hands you your sealed, pre-activated official Egyptian SIM pack inside the arrival hall."
-      },
-      {
-        step: 3,
-        title: "Instant Connection",
-        desc: "Insert the nano-SIM into your unlocked phone and enjoy immediate high-speed internet as you ride to your hotel."
-      }
-    ],
-    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3"],
-    faqs: [
-      {
-        q: "Will this SIM card work in my iPhone or Samsung device?",
-        a: "Yes, as long as your phone is carrier-unlocked. The package includes a 3-in-1 SIM (Standard, Micro, and Nano sizes) that fits all modern smartphones."
-      },
-      {
-        q: "Does the SIM include coverage in Alexandria, Hurghada, and Luxor?",
-        a: "Yes. Our SIM packages operate on Vodafone Egypt and Orange, offering full 4G/5G high-speed coverage throughout Cairo, the Nile Valley, and Red Sea resort destinations."
-      },
-      {
-        q: "Can I use mobile hotspot tethering to connect my laptop or iPad?",
-        a: "Yes, personal hotspot and Wi-Fi tethering are fully enabled on all our data packages."
-      }
-    ]
-  },
-  {
     slug: "cairo-airport-lounges",
     title: "Cairo Airport VIP Executive Lounge Pass",
     arabicTitle: "دخول صالات كبار الزوار بالمطار",

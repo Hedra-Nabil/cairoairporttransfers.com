@@ -12,29 +12,73 @@ const pageDesc = "Explore all Cairo Airport Limousine routes from Cairo Internat
 const canonicalUrl = "https://cairoairportlimousines.com/transfers/";
 
 // Group routes by region
-const cairoRoutes = transferRoutes.filter(r => ["cairo-airport-to-downtown-cairo", "cairo-airport-to-zamalek", "cairo-airport-to-heliopolis"].includes(r.slug));
-const gizaRoutes = transferRoutes.filter(r => ["cairo-airport-to-giza-pyramids"].includes(r.slug));
-const eastRoutes = transferRoutes.filter(r => ["cairo-airport-to-new-cairo"].includes(r.slug));
+const cairoRoutes = transferRoutes.filter(r => ["cairo-airport-to-downtown-cairo", "cairo-airport-to-zamalek", "cairo-airport-to-heliopolis", "cairo-airport-to-maadi", "cairo-airport-to-nasr-city"].includes(r.slug));
+const gizaRoutes = transferRoutes.filter(r => ["cairo-airport-to-giza-pyramids", "cairo-airport-to-sheikh-zayed-6th-october"].includes(r.slug));
+const eastRoutes = transferRoutes.filter(r => ["cairo-airport-to-new-cairo", "cairo-airport-to-new-administrative-capital"].includes(r.slug));
 const intercityRoutes = transferRoutes.filter(r => ["cairo-airport-to-alexandria", "cairo-airport-to-ain-sokhna", "cairo-airport-to-hurghada"].includes(r.slug));
 
-const catalogSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Cairo Airport Limousine Transfer Routes",
-  "itemListElement": transferRoutes.map((route, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "url": `https://cairoairportlimousines.com/transfers/${route.slug}/`,
-    "name": route.heroHeadline
-  }))
-};
+const transferCatalogSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Cairo Airport Limousine Transfer Routes Directory",
+    "description": "Complete directory of fixed-price private transfer and limousine routes from Cairo International Airport (CAI) across Egypt.",
+    "numberOfItems": transferRoutes.length,
+    "itemListElement": transferRoutes.map((route, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://cairoairportlimousines.com/transfers/${route.slug}/`,
+      "name": route.heroHeadline
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://cairoairportlimousines.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Transfers",
+        "item": canonicalUrl
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are airport transfers available from all CAI terminals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our private chauffeurs operate round-the-clock across Terminal 1, Terminal 2, and Terminal 3 at Cairo International Airport with personalized name signs outside arrivals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are tolls and airport parking fees included in the rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All prices displayed across our routes catalog are 100% fixed and inclusive of airport entrance fees, parking tickets, and highway tolls."
+        }
+      }
+    ]
+  }
+];
 ---
 
 <Layout 
   title={pageTitle} 
   description={pageDesc} 
   canonicalUrl={canonicalUrl}
-  schema={catalogSchema}
+  schema={transferCatalogSchemas}
 >
   <Header />
 

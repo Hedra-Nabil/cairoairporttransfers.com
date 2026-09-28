@@ -102,6 +102,43 @@ const defaultSchema = {
       }
     ]
   },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1480",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.1219,
+    "longitude": 31.4056
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+201094066018",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Arabic", "French", "German"],
+    "contactOption": "TollFree",
+    "areaServed": "EG"
+  },
+  "knowsAbout": [
+    "Cairo Airport Transfers",
+    "Cairo Airport Limousine",
+    "Giza Pyramids Transfers",
+    "Meet and Greet Terminal 1 2 3",
+    "Flight Delay Tracking",
+    "Airport Taxi Egypt",
+    "Egypt Airports Private Transfers"
+  ],
   "provider": {
     "@type": "LocalBusiness",
     "name": "Cairo Airport Limousine Dispatch Co.",
@@ -116,6 +153,11 @@ const defaultSchema = {
       "addressRegion": "Cairo",
       "postalCode": "11776",
       "addressCountry": "EG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.1219,
+      "longitude": 31.4056
     }
   }
 };
