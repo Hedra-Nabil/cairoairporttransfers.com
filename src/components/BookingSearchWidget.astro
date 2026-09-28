@@ -1,141 +1,26 @@
 ---
-// Official Egypt Limo Booking Engine Integration Component
+// Egypt Limo Booking Widget — Official Partner Integration
 interface Props {
+  pickup?: string;
+  language?: string;
+  targetId?: string;
+  defaultDropoff?: string;
   customActionUrl?: string;
   isStandalone?: boolean;
-  defaultDropoff?: string;
-  pickup?: string;
-  source?: string;
-  language?: string;
 }
 
 const { 
   pickup = "Cairo International Airport",
-  source = "cairoairporttransfers",
   language = "en",
-  defaultDropoff = "",
-  customActionUrl = "/transfers",
-  isStandalone = false
+  targetId = "egyptlimo-booking"
 } = Astro.props;
 ---
 
-<div id="search-booking-wrapper" class="w-full max-w-6xl xl:max-w-7xl mx-auto transition-all duration-300">
-  <div id="search-booking" class="w-full bg-white rounded-3xl shadow-2xl border border-slate-100 p-2 sm:p-4 md:p-5 relative z-20 transition-all duration-300">
-    
-    <!-- Top Action Toolbar: Status + Fullscreen + Open in New Tab -->
-    <div class="flex flex-wrap items-center justify-between gap-3 px-3 py-2.5 mb-2 bg-slate-50/80 border border-slate-100 rounded-2xl">
-      <div class="flex items-center gap-2 text-slate-600 text-xs font-semibold">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-        </span>
-        <span class="hidden sm:inline">Official Booking Engine:</span>
-        <span class="font-bold text-slate-900">Live Rates & Instant Confirmation</span>
-      </div>
-
-      <div class="flex items-center gap-2 ml-auto">
-        <!-- Toggle Fullscreen Button -->
-        <button
-          id="btn-toggle-fullscreen"
-          type="button"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-indigo-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition shadow-xs cursor-pointer"
-          title="Toggle Fullscreen View"
-        >
-          <svg id="icon-expand" class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-          </svg>
-          <span id="text-fullscreen">Fullscreen</span>
-        </button>
-
-        <!-- Open in New Tab Button -->
-        <a
-          href="https://booking.egyptlimo.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-950 bg-amber-400 hover:bg-amber-500 rounded-xl transition shadow-xs"
-          title="Open in new window (booking.egyptlimo.com)"
-        >
-          <span>Open in New Tab</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- Egypt Limo Official Booking Container -->
-    <div id="egyptlimo-booking" class="w-full min-h-[640px] rounded-2xl bg-white">
-      <!-- Loading State Placeholder -->
-      <div id="booking-loading-skeleton" class="flex flex-col items-center justify-center py-28 text-slate-400 space-y-4">
-        <div class="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
-        <div class="text-center">
-          <p class="text-sm font-bold text-slate-700">Connecting to Egypt Limo Booking System...</p>
-          <p class="text-xs text-slate-400 mt-1">Real-time availability, fixed rates & instant confirmation</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Egypt Limo Widget Script -->
-    <script
-      src="https://booking.egyptlimo.com/widget.js"
-      data-target="egyptlimo-booking"
-      data-language={language}
-      data-pickup={pickup}
-      data-source={source}
-      defer
-    ></script>
-  </div>
-</div>
-
-<script>
-  let isFullscreen = false;
-  let hasScrolledToVehicles = false;
-
-  const btnFullscreen = document.getElementById('btn-toggle-fullscreen');
-  const card = document.getElementById('search-booking');
-  const textFullscreen = document.getElementById('text-fullscreen');
-
-  // Toggle Fullscreen View
-  if (btnFullscreen && card) {
-    btnFullscreen.addEventListener('click', () => {
-      isFullscreen = !isFullscreen;
-      if (isFullscreen) {
-        card.classList.add('fixed', 'inset-0', 'z-[9999]', 'w-screen', 'h-screen', 'rounded-none', 'overflow-y-auto', 'p-4', 'sm:p-8');
-        document.body.style.overflow = 'hidden';
-        if (textFullscreen) textFullscreen.textContent = 'Exit Fullscreen';
-      } else {
-        card.classList.remove('fixed', 'inset-0', 'z-[9999]', 'w-screen', 'h-screen', 'rounded-none', 'overflow-y-auto', 'p-4', 'sm:p-8');
-        document.body.style.overflow = '';
-        if (textFullscreen) textFullscreen.textContent = 'Fullscreen';
-      }
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        btnFullscreen.click();
-      }
-    });
-  }
-
-  // Listen for Egypt Limo booking widget lifecycle events
-  window.addEventListener('egyptlimo:booking', (event: any) => {
-    const data = event.detail;
-    const cardEl = document.getElementById('search-booking');
-    const iframe = document.querySelector('#egyptlimo-booking iframe') as HTMLIFrameElement;
-
-    if (data?.type === 'egyptlimo:booking:resize' && Number.isFinite(data.height)) {
-      // Add a buffer to iframe height to eliminate internal scrollbars completely
-      if (iframe) {
-        iframe.style.height = (Math.max(640, data.height) + 50) + 'px';
-      }
-
-      // Auto-scroll to top of widget when transitioning from Search to Vehicles (Step 2)
-      if (data.height > 720 && !hasScrolledToVehicles && cardEl && !isFullscreen) {
-        hasScrolledToVehicles = true;
-        const rect = cardEl.getBoundingClientRect();
-        window.scrollBy({ top: rect.top - 20, behavior: 'smooth' });
-      }
-    }
-  });
-</script>
+<div id={targetId}></div>
+<script
+  src="https://booking.egyptlimo.com/widget.js"
+  data-target={targetId}
+  data-language={language}
+  data-pickup={pickup}
+  defer
+></script>
