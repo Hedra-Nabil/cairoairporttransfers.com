@@ -220,52 +220,5 @@ export const airportGuides: AirportGuideData[] = [
         a: "Take the free automated People Mover (APM) electric train, which runs every 5 to 10 minutes between Terminal 1, the AirMall, and Terminals 2 & 3."
       }
     ]
-  },
-  {
-    slug: "sphinx-airport-transfers",
-    terminalCode: "SPX Airport",
-    name: "Sphinx International Airport (SPX) Transfers & Guide",
-    shortTitle: "Sphinx Airport (SPX) Guide",
-    metaTitle: "Sphinx Airport Transfers (SPX) | Private Taxi to Giza Pyramids",
-    metaDescription: "Private transfers from Sphinx Airport (SPX) to Giza Pyramids and West Cairo hotels. Fixed rates from $35, driver meets outside with sign, and 24/7 dispatch.",
-    badge: "West Cairo Gateway",
-    headline: "Sphinx International Airport (SPX) Transfers & Passenger Guide",
-    subheadline: "Located on the western outskirts of Cairo, only 25 minutes from the Giza Pyramids and Grand Egyptian Museum (GEM). Avoid downtown traffic entirely.",
-    meetingPoint: {
-      location: "SPX Main Terminal Arrival Concourse",
-      description: "Directly outside the single-terminal arrivals baggage hall doors at the VIP pickup curb.",
-      stepByStep: [
-        "Disembark and enter Sphinx Airport's modern single-level terminal building.",
-        "Clear passport control and collect baggage from the compact carousel hall.",
-        "Exit through the customs inspection lane.",
-        "Meet your designated chauffeur waiting outside with your name board."
-      ],
-      tips: [
-        "SPX is the fastest airport for travelers visiting the Pyramids, Sheikh Zayed City, and 6th of October City.",
-        "Traffic from SPX to Giza is significantly lighter than from Cairo International Airport (CAI)."
-      ]
-    },
-    airlinesServed: [
-      "Wizz Air", "easyJet", "Air Cairo", "Flynas", "Jazeera Airways", "Pegasus Airlines"
-    ],
-    facilities: [
-      "Modern Single-Terminal Architecture",
-      "Baggage Wrapping & Reclaim Hall",
-      "Official Bank & Currency Exchange",
-      "Telecom SIM Card Kiosk",
-      "VIP Limousine Pickup Lanes"
-    ],
-    distanceToDowntown: "45 km (45–60 mins)",
-    distanceToPyramids: "28 km (25–35 mins)",
-    faqs: [
-      {
-        q: "Is Sphinx Airport closer to the Pyramids than Cairo Airport?",
-        a: "Yes! Sphinx Airport (SPX) is located on the Cairo-Alexandria Desert Road in West Cairo, only 28 km (approx. 25–30 minutes) from the Giza Pyramids, compared to 38 km and heavier traffic from CAI."
-      },
-      {
-        q: "Which airlines fly into Sphinx International Airport?",
-        a: "SPX is primarily served by European budget carriers such as Wizz Air and easyJet, as well as regional carriers like Flynas and Air Cairo."
-      }
-    ]
   }
 ];

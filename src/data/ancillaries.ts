@@ -56,7 +56,7 @@ export const ancillaryServices: AncillaryService[] = [
         desc: "Your porter collects all checked suitcases from the carousel and escorts you out to your waiting private chauffeur."
       }
     ],
-    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3", "Sphinx Airport (SPX)"],
+    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3"],
     faqs: [
       {
         q: "What is the difference between standard transfer pickup and VIP Fast-Track?",
@@ -110,7 +110,7 @@ export const ancillaryServices: AncillaryService[] = [
         desc: "Your little one rests comfortably in certified safety as you ride smoothly from Cairo Airport to your hotel or Nile resort."
       }
     ],
-    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3", "Sphinx Airport (SPX)"],
+    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3"],
     faqs: [
       {
         q: "What types of child seats are available?",
@@ -164,7 +164,7 @@ export const ancillaryServices: AncillaryService[] = [
         desc: "Insert the nano-SIM into your unlocked phone and enjoy immediate high-speed internet as you ride to your hotel."
       }
     ],
-    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3", "Sphinx Airport (SPX)"],
+    terminalsAvailable: ["Terminal 1", "Terminal 2", "Terminal 3"],
     faqs: [
       {
         q: "Will this SIM card work in my iPhone or Samsung device?",

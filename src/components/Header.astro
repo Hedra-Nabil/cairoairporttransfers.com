@@ -20,7 +20,7 @@ import { airportGuides } from '../data/airports';
           <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Free Flight Delay Protection Included
+          Free Flight Tracking Included
         </span>
       </div>
 
@@ -59,7 +59,7 @@ import { airportGuides } from '../data/airports';
       </a>
 
       <!-- Desktop Nav Links with Dropdowns -->
-      <nav class="hidden xl:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+      <nav class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-sm font-semibold text-slate-700">
         
         <!-- Destinations Dropdown -->
         <div class="relative group py-6">
@@ -95,123 +95,152 @@ import { airportGuides } from '../data/airports';
           </div>
         </div>
 
-        <!-- Terminals Dropdown -->
+        <!-- Airports Dropdown -->
         <div class="relative group py-6">
           <button type="button" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
-            <span>Terminals & Airports</span>
+            <span>Airports</span>
             <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
-          <div class="absolute left-0 top-full hidden group-hover:block w-80 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
-            <div class="text-[10px] font-black uppercase text-slate-400 px-3 py-1.5 tracking-wider">Cairo Airport Terminal Guides</div>
+          <div class="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:block w-[370px] bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
+            <div class="flex items-center justify-between px-2.5 py-1.5 mb-1 border-b border-slate-100">
+              <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Terminal Guides & Pickups</span>
+              <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">CAI Terminals</span>
+            </div>
             <div class="space-y-1">
-              {airportGuides.map((guide) => (
-                <a 
-                  href={`/airports/${guide.slug}`} 
-                  class="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition group/item"
-                >
-                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">
-                    {guide.shortTitle}
-                  </span>
-                  <span class="text-[10px] text-slate-400">
-                    {guide.terminalCode} Pickup Guide
-                  </span>
-                </a>
-              ))}
+              {airportGuides.map((guide) => {
+                let badge = "CAI Hub";
+                let badgeClass = "bg-amber-50 text-amber-700 border border-amber-200/50";
+                let cleanTitle = "Cairo Airport Overview";
+                let cleanDesc = "Terminals guide, baggage & pickup";
+
+                if (guide.slug === "cairo-airport-terminal-3") {
+                  badge = "Terminal 3";
+                  badgeClass = "bg-indigo-50 text-indigo-700 border border-indigo-200/50";
+                  cleanTitle = "Terminal 3 (T3)";
+                  cleanDesc = "EgyptAir & Star Alliance flights";
+                } else if (guide.slug === "cairo-airport-terminal-2") {
+                  badge = "Terminal 2";
+                  badgeClass = "bg-blue-50 text-blue-700 border border-blue-200/50";
+                  cleanTitle = "Terminal 2 (T2)";
+                  cleanDesc = "Emirates, Saudia, BA & Gulf";
+                } else if (guide.slug === "cairo-airport-terminal-1") {
+                  badge = "Terminal 1";
+                  badgeClass = "bg-emerald-50 text-emerald-700 border border-emerald-200/50";
+                  cleanTitle = "Terminal 1 (Old Airport)";
+                  cleanDesc = "Budget airlines & domestic flights";
+                }
+
+                return (
+                  <a 
+                    href={`/airports/${guide.slug}`} 
+                    class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item"
+                  >
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600 transition-colors">
+                        {cleanTitle}
+                      </div>
+                      <div class="text-[11px] text-slate-400 mt-0.5">
+                        {cleanDesc}
+                      </div>
+                    </div>
+                    <span class={`text-[10px] font-bold px-2 py-0.5 rounded-md shrink-0 ml-2 ${badgeClass}`}>
+                      {badge}
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        <!-- Fleet & Services Dropdown -->
+        <!-- Fleet & Extras Combined Dropdown -->
         <div class="relative group py-6">
-          <a href="/fleet" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
-            <span>Vehicle Fleet</span>
+          <button type="button" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
+            <span>Fleet & Extras</span>
             <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
-          </a>
+          </button>
 
-          <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
-            <div class="text-[10px] font-black uppercase text-slate-400 px-3 py-1.5 tracking-wider">Fleet Categories</div>
-            <div class="space-y-1">
-              <a href="/fleet/private-taxi" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Taxi</div>
-                  <div class="text-[10px] text-slate-400">Up to 3 Pax • Sedan</div>
+          <div class="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:block w-[520px] bg-white border border-slate-200 rounded-2xl shadow-xl p-4 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
+            <div class="grid grid-cols-2 gap-3">
+              <!-- Fleet Section -->
+              <div>
+                <div class="text-[10px] font-black uppercase text-slate-400 px-2.5 py-1 tracking-wider">Vehicle Fleet</div>
+                <div class="space-y-1">
+                  <a href="/fleet/private-taxi" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Taxi</div>
+                      <div class="text-[10px] text-slate-400">Up to 3 Pax • Sedan</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">From $24</span>
+                  </a>
+                  <a href="/fleet/private-minivan" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Minivan</div>
+                      <div class="text-[10px] text-slate-400">Up to 7 Pax • Family</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">From $38</span>
+                  </a>
+                  <a href="/fleet/executive-vip" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Executive VIP</div>
+                      <div class="text-[10px] text-slate-400">Mercedes-Benz</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">From $65</span>
+                  </a>
+                  <a href="/fleet/airport-minibus" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Airport Minibus</div>
+                      <div class="text-[10px] text-slate-400">Up to 16 Pax • Group</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">From $95</span>
+                  </a>
                 </div>
-                <span class="text-xs font-black text-amber-500">From $24</span>
-              </a>
-              <a href="/fleet/private-minivan" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Private Minivan</div>
-                  <div class="text-[10px] text-slate-400">Up to 7 Pax • Family</div>
+              </div>
+
+              <!-- Extras Section -->
+              <div>
+                <div class="text-[10px] font-black uppercase text-slate-400 px-2.5 py-1 tracking-wider">Airport Extras</div>
+                <div class="space-y-1">
+                  <a href="/services/vip-fast-track" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Fast-Track</div>
+                      <div class="text-[10px] text-slate-400">Skip Immigration</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">$45</span>
+                  </a>
+                  <a href="/services/child-safety-seats" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Child Car Seats</div>
+                      <div class="text-[10px] text-slate-400">ISOFIX Certified</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">$10</span>
+                  </a>
+                  <a href="/services/egypt-tourist-sim" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Tourist 5G SIM</div>
+                      <div class="text-[10px] text-slate-400">30GB Data</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">$20</span>
+                  </a>
+                  <a href="/services/cairo-airport-lounges" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
+                    <div>
+                      <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Lounge Pass</div>
+                      <div class="text-[10px] text-slate-400">Buffet & Wi-Fi</div>
+                    </div>
+                    <span class="text-xs font-black text-amber-500">$38</span>
+                  </a>
                 </div>
-                <span class="text-xs font-black text-amber-500">From $38</span>
-              </a>
-              <a href="/fleet/executive-vip" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Executive / VIP</div>
-                  <div class="text-[10px] text-slate-400">Mercedes-Benz E-Class</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">From $65</span>
-              </a>
-              <a href="/fleet/airport-minibus" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Airport Shuttle & Minibus</div>
-                  <div class="text-[10px] text-slate-400">Up to 16 Pax • Group</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">From $95</span>
-              </a>
+              </div>
             </div>
-            <div class="pt-2 mt-2 border-t border-slate-100">
-              <a href="/fleet" class="block text-center py-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50/50 rounded-lg">
+
+            <div class="pt-2.5 mt-2.5 border-t border-slate-100 flex items-center justify-between px-1">
+              <a href="/fleet" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">
                 View Full Fleet & Luggage Guide →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Airport VIP Services Dropdown -->
-        <div class="relative group py-6">
-          <button type="button" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
-            <span>Airport Extras</span>
-            <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div class="absolute left-0 top-full hidden group-hover:block w-76 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
-            <div class="text-[10px] font-black uppercase text-slate-400 px-3 py-1.5 tracking-wider">Arrival & Departure Extras</div>
-            <div class="space-y-1">
-              <a href="/services/vip-fast-track" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Fast-Track & Ahlan</div>
-                  <div class="text-[10px] text-slate-400">Skip Immigration Queues</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">$45</span>
-              </a>
-              <a href="/services/child-safety-seats" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Child & Infant Car Seats</div>
-                  <div class="text-[10px] text-slate-400">Certified ISOFIX Safety</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">$10</span>
-              </a>
-              <a href="/services/egypt-tourist-sim" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">Egypt Tourist 5G SIM</div>
-                  <div class="text-[10px] text-slate-400">30GB Data on Arrival</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">$20</span>
-              </a>
-              <a href="/services/cairo-airport-lounges" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 transition group/item">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 group-hover/item:text-amber-600">VIP Executive Lounge</div>
-                  <div class="text-[10px] text-slate-400">Buffet, Wi-Fi & Showers</div>
-                </div>
-                <span class="text-xs font-black text-amber-500">$38</span>
               </a>
             </div>
           </div>
@@ -220,18 +249,18 @@ import { airportGuides } from '../data/airports';
         <!-- How it Works -->
         <a href="/how-it-works" class="hover:text-amber-500 transition">How It Works</a>
 
-        <!-- Help & FAQ Dropdown -->
+        <!-- Support Dropdown -->
         <div class="relative group py-6">
           <button type="button" class="flex items-center gap-1 hover:text-amber-500 transition focus:outline-none">
-            <span>About & Support</span>
+            <span>Support</span>
             <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
-          <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
+          <div class="absolute right-0 top-full hidden group-hover:block w-60 bg-white border border-slate-200 rounded-2xl shadow-xl p-3 z-50 transform opacity-0 group-hover:opacity-100 transition-all">
             <a href="/about-us" class="block p-2 rounded-xl hover:bg-slate-50 text-xs font-bold text-slate-800 hover:text-amber-600 transition">
-              About Our Company & Safety
+              About Us & Safety
             </a>
             <a href="/faq" class="block p-2 rounded-xl hover:bg-slate-50 text-xs font-bold text-slate-800 hover:text-amber-600 transition">
               Help Center & FAQs
@@ -261,7 +290,7 @@ import { airportGuides } from '../data/airports';
       <button 
         id="mobile-menu-btn" 
         type="button" 
-        class="xl:hidden p-2.5 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+        class="lg:hidden p-2.5 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
         aria-label="Toggle Navigation"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,22 +302,22 @@ import { airportGuides } from '../data/airports';
   </div>
 
   <!-- Mobile Dropdown Menu -->
-  <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
     <div class="space-y-1">
-      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Vehicle Fleet & Categories</div>
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Vehicle Fleet</div>
       <a href="/fleet" class="block py-1.5 px-3 text-xs font-bold text-slate-900 hover:bg-amber-50 rounded-xl">All Fleet & Luggage Guide</a>
       <a href="/fleet/private-taxi" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚕 Private Taxi (From $24)</a>
       <a href="/fleet/private-minivan" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚐 Private Minivan (From $38)</a>
-      <a href="/fleet/executive-vip" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⭐ Executive / VIP (From $65)</a>
-      <a href="/fleet/airport-minibus" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚌 Airport Shuttle & Minibus (From $95)</a>
+      <a href="/fleet/executive-vip" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⭐ Executive VIP (From $65)</a>
+      <a href="/fleet/airport-minibus" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🚌 Airport Minibus (From $95)</a>
     </div>
 
     <div class="space-y-1 pt-2 border-t border-slate-100">
-      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Airport Extras & VIP Services</div>
-      <a href="/services/vip-fast-track" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⚡ VIP Fast-Track & Ahlan ($45)</a>
-      <a href="/services/child-safety-seats" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">👶 Child & Infant Car Seats ($10)</a>
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Airport Extras</div>
+      <a href="/services/vip-fast-track" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">⚡ VIP Fast-Track ($45)</a>
+      <a href="/services/child-safety-seats" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">👶 Child Safety Seats ($10)</a>
       <a href="/services/egypt-tourist-sim" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">📱 Egypt Tourist 5G SIM ($20)</a>
-      <a href="/services/cairo-airport-lounges" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🛋️ VIP Executive Lounge Pass ($38)</a>
+      <a href="/services/cairo-airport-lounges" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">🛋️ VIP Executive Lounge ($38)</a>
     </div>
 
     <div class="space-y-1 pt-2 border-t border-slate-100">
@@ -297,7 +326,7 @@ import { airportGuides } from '../data/airports';
     </div>
 
     <div class="space-y-1 pt-2 border-t border-slate-100">
-      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Terminal Guides</div>
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Airports</div>
       {airportGuides.map((guide) => (
         <a href={`/airports/${guide.slug}`} class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">
           {guide.shortTitle}
@@ -306,7 +335,7 @@ import { airportGuides } from '../data/airports';
     </div>
 
     <div class="space-y-1 pt-2 border-t border-slate-100">
-      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Company & Help</div>
+      <div class="text-xs font-black uppercase tracking-wider text-slate-400 px-2 py-1">Support</div>
       <a href="/how-it-works" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">How It Works</a>
       <a href="/about-us" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">About Us & Safety</a>
       <a href="/faq" class="block py-1.5 px-3 text-xs font-semibold text-slate-700 hover:text-amber-600">Help Center & FAQ</a>
